@@ -34,8 +34,10 @@ export default function Home() {
 									Get ready, pods are about to land.
 								</h1>
 								<p className="text-[#737E80] -tracking-[1px]">
-									Maximize your liquid assets&apos; value—stake any liquid token
-									and boost your earnings with enhanced multi-rewards.
+									POD is a fully permissionless protocol that maximize your
+									liquid assets&apos; value. Create a Pod or stake any token
+									including ERC-20 tokens or LP tokens and boost your earnings
+									with enhanced multi-rewards.
 								</p>
 							</div>
 							<div className="gap-2 flex items-center mt-10">
@@ -68,9 +70,9 @@ export default function Home() {
 							</div>
 							<p className="text-[#737E80]">
 								Seamlessly <b className="text-white">create a pod</b> for a
-								wide-range of liquid assets, including ERC-20 tokens, LP tokens,
-								and liquid re-staking tokens (LRT), and customize it with
-								multi-rewards in your preferred asset.
+								wide-range of assets, including ERC-20 tokens, LP tokens, liquid
+								re-staking tokens (LRT) or even ERC-404 tokens, and customize it
+								with multi-rewards in your preferred asset.
 							</p>
 						</div>
 						<div className="flex flex-col gap-1">
@@ -91,9 +93,9 @@ export default function Home() {
 								Enhance your earnings
 							</div>
 							<p className="text-[#737E80]">
-								Easily <b className="text-white">boost your pods</b> with
-								multiple rewards over a fixed period of time, enhancing your
-								potential returns without inconvenience.
+								Easily <b className="text-white">boost any pod</b> with multiple
+								rewards over a custom period of time providing value to any
+								asset you&apos;re interested in, including ERC-20 or LPs.
 							</p>
 						</div>
 					</div>
