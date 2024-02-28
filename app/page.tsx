@@ -46,7 +46,7 @@ export default function Home() {
 							</div>
 							<div className="gap-2 flex items-center mt-10">
 								<Button>GITBOOK</Button>
-								<Button>TELEGRAM</Button>
+								<Button>GET $POD</Button>
 							</div>
 						</div>
 					</div>
