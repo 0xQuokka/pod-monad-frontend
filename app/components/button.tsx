@@ -1,8 +1,13 @@
-const Button = ({ children }: any) => {
+const Button = ({ children, link }: any) => {
 	return (
-		<div className="p-4 border border-[#323637] bg-[#17191A] text-white uppercase">
+		<a
+			href={link}
+			target="_blank"
+			rel="noreferrer"
+			className="p-4 border border-[#323637] bg-[#17191A] transition-all hover:bg-[#202224] text-white uppercase cursor-pointer"
+		>
 			{children}
-		</div>
+		</a>
 	);
 };
 
