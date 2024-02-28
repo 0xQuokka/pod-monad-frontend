@@ -84,8 +84,9 @@ export default function Home() {
 								Stake any asset
 							</div>
 							<p className="text-[#737E80]">
-								Whether it's a straightforward ERC-20 token, a liquidity pool
-								token, or a liquid re-staking token, you have the freedom to
+								Whether it&apos;s a straightforward ERC-20 token, a liquidity
+								pool token, or a liquid re-staking token, you have the freedom
+								to
 								<b className="text-white">
 									stake any asset and earn rewards in return.
 								</b>
