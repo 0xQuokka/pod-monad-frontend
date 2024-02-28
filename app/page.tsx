@@ -35,9 +35,9 @@ export default function Home() {
 								</h1>
 								<p className="text-[#737E80] -tracking-[1px]">
 									POD is a fully permissionless protocol that maximize your
-									liquid assets&apos; value. Create a Pod or stake any token
-									including ERC-20 tokens or LP tokens and boost your earnings
-									with enhanced multi-rewards.
+									assets&apos; value. Create a Pod or stake any token including
+									ERC-20 tokens or LP tokens and boost your earnings with
+									enhanced multi-rewards.
 								</p>
 							</div>
 							<div className="gap-2 flex items-center mt-10">
@@ -82,7 +82,7 @@ export default function Home() {
 							<p className="text-[#737E80]">
 								Whether it&apos;s a straightforward ERC-20 token, a liquidity
 								pool token, or a liquid re-staking token, you have the freedom
-								to
+								to{" "}
 								<b className="text-white">
 									stake any asset and earn rewards in return.
 								</b>
