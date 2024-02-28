@@ -11,6 +11,7 @@ export default function Home() {
 					src={"/background.jpeg"}
 					alt="podline"
 					fill
+					quality={100}
 					className="mix-blend-overlay object-cover"
 				/>
 			</div>
@@ -50,8 +51,9 @@ export default function Home() {
 						<Image
 							src={"/podcard.jpg"}
 							alt="Pod Card"
-							width={424}
-							height={538}
+							width={848}
+							height={1076}
+							quality={100}
 							className="w-full"
 						/>
 					</div>
@@ -59,12 +61,12 @@ export default function Home() {
 				<section className="grid grid-cols-2 mt-40 md:mt-20 md:flex md:flex-col md:gap-3">
 					<div className="flex flex-col gap-1">
 						<div className="font-[500] text-[24px] text-white ">
-							Introducing pods
+							Introducing pods.
 						</div>
 						<div className="text-[#737E80] uppercase">ALPHA v0.1</div>
 					</div>
-					<div className="flex flex-col gap-14 md:mt-6">
-						<div className="flex flex-col gap-1">
+					<div className="flex flex-col gap-20 md:mt-6">
+						<div className="flex flex-col gap-4">
 							<div className="text-white font-[24px] uppercase">
 								Create your own pod
 							</div>
@@ -75,7 +77,7 @@ export default function Home() {
 								with multi-rewards in your preferred asset.
 							</p>
 						</div>
-						<div className="flex flex-col gap-1">
+						<div className="flex flex-col gap-4">
 							<div className="text-white font-[24px] uppercase">
 								Stake any asset
 							</div>
@@ -88,7 +90,7 @@ export default function Home() {
 								</b>
 							</p>
 						</div>
-						<div className="flex flex-col gap-1">
+						<div className="flex flex-col gap-4">
 							<div className="text-white font-[24px] uppercase">
 								Enhance your earnings
 							</div>
@@ -102,10 +104,12 @@ export default function Home() {
 				</section>
 				<section className="grid grid-cols-2 mt-40 md:mt-20 md:flex md:flex-col md:gap-3">
 					<div className="flex flex-col gap-1">
-						<div className="font-[500] text-[24px] text-white ">Stay alert</div>
+						<div className="font-[500] text-[24px] text-white ">
+							Stay alert.
+						</div>
 						<div className="text-[#737E80] uppercase">socials</div>
 					</div>
-					<div className="flex flex-col gap-14 md:mt-6">
+					<div className="flex flex-col gap-4 md:mt-6">
 						<a
 							href="https://twitter.com/PodFinance"
 							rel="noreferrer"
