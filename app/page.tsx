@@ -38,8 +38,13 @@ export default function Home() {
 								</p>
 							</div>
 							<div className="gap-2 flex items-center mt-10">
-								<Button link="#">GITBOOK</Button>
-								<Button link="#"> GET $POD</Button>
+								<Button link="https://pod-finance.gitbook.io/welcome-to-pod-finance">
+									GITBOOK
+								</Button>
+								<Button link="https://app.uniswap.org/explore/tokens/base/0xbef5d404548fab05820e64f92cf043b6a06f9c72">
+									{" "}
+									GET $POD
+								</Button>
 							</div>
 						</div>
 					</div>
@@ -206,7 +211,7 @@ export default function Home() {
 							</div>
 						</a>
 						<a
-							href="#"
+							href="https://pod-finance.gitbook.io/welcome-to-pod-finance"
 							target="_blank"
 							rel="noreferrer"
 							className="flex gap-4 items-center w-[200px] text-[#737E80] hover:text-white"
