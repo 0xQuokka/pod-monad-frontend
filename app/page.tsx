@@ -55,7 +55,7 @@ export default function Home() {
 							width={848}
 							height={1076}
 							quality={100}
-							className="w-full blur-md"
+							className="w-full"
 						/>
 					</div>
 				</section>
