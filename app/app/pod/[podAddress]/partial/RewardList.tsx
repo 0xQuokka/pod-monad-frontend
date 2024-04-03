@@ -8,7 +8,7 @@ interface IRewardList {
 
 const RewardList = ({ rewards }: IRewardList) => {
 	return (
-		<div>
+		<div className="">
 			<header className="flex justify-between items-center">
 				<Title32 className="text-white">REWARDS</Title32>
 				<div>Button</div>

@@ -12,7 +12,7 @@ const App = () => {
 		<div>
 			<div className="flex justify-between items-center">
 				<div>
-					<Title32>ALL PODS</Title32>
+					<Title32 className="text-white">ALL PODS</Title32>
 					<Label>231 currently active</Label>
 				</div>
 				<div>

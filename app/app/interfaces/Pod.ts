@@ -25,7 +25,7 @@ export interface POD_INTERFACE {
 	name: string;
 	symbol: string;
 	description: string;
-	decimals: string;
+	decimals: Number;
 	reserve: BigInt;
 	locked: BigInt;
 	owner: POD_USER_INTERFACE;

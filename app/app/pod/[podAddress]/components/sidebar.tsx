@@ -25,7 +25,7 @@ const Sidebar = ({ pod }: Sidebar) => {
 				<Label>{pod.description}</Label>
 			</div>
 			<div className="flex flex-col gap-2">
-				<Card className="p-0">
+				<Card className="p-0" noPadding={true}>
 					<div className="flex flex-col">
 						<div className="border-b border-neutral-border p-4">
 							<Label className="text-white">POD INFO</Label>

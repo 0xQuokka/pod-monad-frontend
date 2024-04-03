@@ -1,3 +1,4 @@
+import { POD_TOKEN_INTERFACE } from "@/app/app/interfaces/Pod";
 import { ethers } from "ethers";
 import { ReactNode } from "react";
 import { Address } from "viem";
@@ -33,4 +34,12 @@ export function parseRewardDate(d: number): string {
 	const _date = new Date(d * 1000);
 
 	return `${_date.getMonth() + 1}/${_date.getDay() + 1} ${_date.getHours()}:${_date.getMinutes()}`;
+}
+
+export function formatAmount(n: string, decimals: POD_TOKEN_INTERFACE["decimals"]): string {
+	return parseFloat(ethers.formatUnits(n, parseInt(decimals.toString()))).toFixed(2);
+}
+
+export function parseAmount(n: string, decimals: POD_TOKEN_INTERFACE["decimals"]): string {
+	return ethers.parseUnits(n.toString(), parseInt(decimals.toString())).toString();
 }

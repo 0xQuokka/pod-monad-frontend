@@ -17,6 +17,7 @@ const GET_PODS = gql`
 			id
 			name
 			symbol
+			decimals
 			reserve
 			locked
 			description
@@ -24,8 +25,8 @@ const GET_PODS = gql`
 				id
 				name
 				symbol
+				decimals
 			}
-			decimals
 			owner {
 				id
 			}
@@ -55,7 +56,7 @@ const PodPage = ({ params }: PodPageParams) => {
 			{data && data.pod ? (
 				<div className="flex gap-16">
 					<Sidebar pod={data.pod} />
-					<div className="flex-1">
+					<div className="flex-1 flex flex-col gap-20">
 						<DepositBox pod={data.pod} />
 						<RewardList rewards={data.pod.rewards} />
 					</div>
