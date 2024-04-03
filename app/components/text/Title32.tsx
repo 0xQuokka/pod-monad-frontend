@@ -1,7 +1,7 @@
 import { IText } from "./interface";
 
-const Title32 = ({ children }: IText) => {
-	return <div className="text-[32px] text-white leading-10 -tracking-[1px]">{children}</div>;
+const Title32 = ({ children, className }: IText) => {
+	return <div className={`text-[32px] leading-10 -tracking-[1px] ${className}`}>{children}</div>;
 };
 
 export default Title32;

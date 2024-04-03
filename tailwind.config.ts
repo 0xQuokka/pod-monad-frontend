@@ -9,6 +9,8 @@ const config: Config = {
 				gray: "#737E80",
 				black: "#17191A",
 				neutral: "#323637",
+				"neutral-border": "#323637",
+				"neutral-black": "#17191A",
 			},
 			screens: {
 				md: {

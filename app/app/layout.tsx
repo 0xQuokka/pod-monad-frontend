@@ -5,6 +5,7 @@ import { darkTheme, getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rai
 import { http, WagmiProvider } from "wagmi";
 import { base, Chain } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from "@apollo/client";
 import ConnectWallet from "../components/ConnectWallet";
 import { ReactNode } from "react";
 
@@ -43,17 +44,29 @@ const Layout = ({ children }: ILayout) => {
 
 	const queryClient = new QueryClient();
 
+	const apolloClient = new ApolloClient({
+		link: new HttpLink({
+			uri: process.env.NEXT_PUBLIC_THEGRAPH_API_URL as string,
+			fetchOptions: {
+				mode: "cors",
+			},
+		}),
+		cache: new InMemoryCache(),
+	});
+
 	return (
 		<WagmiProvider config={wagmiConfig}>
 			<QueryClientProvider client={queryClient}>
 				<RainbowKitProvider theme={darkTheme()}>
-					<main className="relative z-10 py-[80px] w-[864px] mx-auto md:w-full md:p-5">
-						<header className="flex items-center justify-between">
-							<div className="text-[50px] -tracking-[3px] text-white font-[500]">pod.</div>
-							<ConnectWallet>Connect wallet</ConnectWallet>
-						</header>
-						{children}
-					</main>
+					<ApolloProvider client={apolloClient}>
+						<main className="relative z-10 py-[80px] w-[864px] mx-auto md:w-full md:p-5 ">
+							<header className="flex items-center justify-between mb-[80px]">
+								<div className="text-[50px] -tracking-[3px] text-white font-[500]">pod.</div>
+								<ConnectWallet>Connect wallet</ConnectWallet>
+							</header>
+							{children}
+						</main>
+					</ApolloProvider>
 				</RainbowKitProvider>
 			</QueryClientProvider>
 		</WagmiProvider>
