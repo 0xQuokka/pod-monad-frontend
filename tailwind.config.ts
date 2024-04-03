@@ -14,7 +14,7 @@ const config: Config = {
 			},
 			screens: {
 				md: {
-					raw: "(max-width: 950px)",
+					raw: "(max-width: 900px)",
 				},
 			},
 		},

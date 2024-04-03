@@ -7,7 +7,7 @@ interface IRewardCard {
 }
 
 const RewardCard = ({ reward }: IRewardCard) => {
-	const endDate = parseRewardDate(parseInt(reward.endDate.toString()));
+	const [label, date] = parseRewardDate(parseInt(reward.startDate.toString()), parseInt(reward.endDate.toString()));
 
 	return (
 		<Card noPadding={true}>
@@ -15,16 +15,12 @@ const RewardCard = ({ reward }: IRewardCard) => {
 				<div className="border-r border-neutral-border">
 					<div className=" p-4">{reward.token.symbol}</div>
 				</div>
-				<div className="px-4 flex justify-between items-center p-4 flex-1">
+				<div className="px-4 flex md:flex-col justify-between items-center md:items-start p-4 flex-1">
 					<div>{`Amount: ${formatNumber(reward.remainingAmount, reward.token.decimals || 18)}`}</div>
-					<div className="text-right">
-						{endDate !== "ENDED" ? (
-							<span>
-								<span className="text-gray">ENDS</span> {endDate} UTC
-							</span>
-						) : (
-							endDate
-						)}
+					<div className="text-right md:text-left">
+						<span>
+							<span className="text-gray">{label}</span> {date ? `${date} UTC` : ""}
+						</span>
 					</div>
 				</div>
 			</div>

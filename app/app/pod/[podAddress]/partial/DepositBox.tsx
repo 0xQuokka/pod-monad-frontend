@@ -5,7 +5,7 @@ import Title32 from "@/app/components/text/Title32";
 import { useRef, useEffect, useState } from "react";
 import GenericInput from "../components/input";
 import Card from "@/app/components/cards/Card";
-import { useAccount, useReadContract } from "wagmi";
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import POD_ABI from "@/abis/pod";
 import ERC20_ABI from "@/abis/ERC20";
 import { formatAmount, formatNumber, parseAmount } from "@/utils/utils";
@@ -24,6 +24,9 @@ const labelByAction = {
 };
 
 const DepositBox = ({ pod }: IDepositBox) => {
+	const { writeContract: writeApprove, status: statusApprove, isPending: isPendingApprove } = useWriteContract();
+	const { writeContract: writeAction, status: statusAction, isPending: isPendingAction, error: actionError } = useWriteContract();
+
 	const [amount, setAmount] = useState<number>(0);
 	const [balance, setBalance] = useState<number>(0);
 
@@ -87,6 +90,17 @@ const DepositBox = ({ pod }: IDepositBox) => {
 		},
 	});
 
+	const { data: allowance } = useReadContract({
+		abi: ERC20_ABI,
+		address: pod.underlying.id,
+		functionName: "allowance",
+		args: [account, pod.id],
+		query: {
+			refetchInterval: 3600,
+			enabled: !!account,
+		},
+	});
+
 	useEffect(() => {
 		if (action === "deposit" && underlyingBalance !== undefined && underlyingBalance !== null) {
 			setBalance(parseFloat(formatAmount(underlyingBalance.toString(), pod.underlying.decimals)));
@@ -100,6 +114,42 @@ const DepositBox = ({ pod }: IDepositBox) => {
 
 		setActionAmount(parseAmount(debouncedAmount.toString(), actionToken.decimals));
 	}, [debouncedAmount, actionToken]);
+
+	const performApprove = () => {
+		if (isPendingAction || isPendingApprove) return;
+
+		writeApprove({
+			abi: ERC20_ABI,
+			address: pod.underlying.id,
+			functionName: "approve",
+			args: [pod.id, underlyingBalance],
+		});
+	};
+
+	const performAction = () => {
+		if (isPendingAction || isPendingApprove) return;
+
+		const actionArgs = {
+			deposit: [actionAmount, account],
+			withdraw: [actionAmount, account, account],
+		};
+
+		const functionName = action === "deposit" && lock ? "depositAndLock" : action === "deposit" ? "deposit" : "redeem";
+
+		writeAction(
+			{
+				abi: POD_ABI,
+				address: pod.id,
+				functionName: functionName,
+				args: actionArgs[action],
+			},
+			{
+				onSuccess: () => {
+					setAmount(0);
+				},
+			}
+		);
+	};
 
 	return (
 		<div>
@@ -140,7 +190,16 @@ const DepositBox = ({ pod }: IDepositBox) => {
 				<></>
 			)}
 			<div className="my-2">
-				<Button className="text-center">{action.toUpperCase()}</Button>
+				{action === "deposit" && allowance !== undefined && allowance !== null && parseFloat(formatAmount(allowance.toString(), pod.underlying.decimals)) < amount ? (
+					<Button onClick={performApprove} className="text-center" loading={isPendingApprove}>
+						Approve
+					</Button>
+				) : (
+					<Button onClick={performAction} className={`text-center transition-all ${!amount ? "opacity-70 pointer-events-none" : ""}`} loading={isPendingAction}>
+						{action.toUpperCase()}
+						{action === "deposit" && lock ? " and lock" : ""}
+					</Button>
+				)}
 			</div>
 			<Card className="mt-8">
 				<div className="flex justify-between items-center text-gray">

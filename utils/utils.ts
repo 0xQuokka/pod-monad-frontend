@@ -1,6 +1,5 @@
 import { POD_TOKEN_INTERFACE } from "@/app/app/interfaces/Pod";
 import { ethers } from "ethers";
-import { ReactNode } from "react";
 import { Address } from "viem";
 
 export const parseOwnerAddress = (address: Address): string => {
@@ -21,19 +20,23 @@ export function formatNumber(bignumber: BigInt, decimals: Number): any {
 		const millions = (number / 1000000).toFixed(1);
 		return `${millions}M`;
 	}
-
-	return number.toFixed(2);
 }
 
-export function parseRewardDate(d: number): string {
-	const _rewardDateInUTC = Date.UTC(d * 1000);
-
+export function parseRewardDate(startDate: number, endDate: number): [string, string] {
 	const now = parseInt(new Date().getTime().toString());
-	if (_rewardDateInUTC < now) return "ENDED";
+	const _rewardStartDateInUTC = new Date(startDate * 1000);
+	const _rewardEndDateInUTC = new Date(endDate * 1000);
 
-	const _date = new Date(d * 1000);
+	if (now < _rewardStartDateInUTC.getTime()) {
+		const _date = new Date(startDate * 1000);
 
-	return `${_date.getMonth() + 1}/${_date.getDay() + 1} ${_date.getHours()}:${_date.getMinutes()}`;
+		return ["STARTS", `${_date.getMonth() + 1}/${_date.getDay() + 1} ${_date.getHours()}:${_date.getMinutes()}`];
+	}
+
+	if (_rewardEndDateInUTC.getTime() < now) return ["ENDED", ""];
+
+	const _date = new Date(startDate * 1000);
+	return ["ENDS", `${_date.getMonth() + 1}/${_date.getDay() + 1} ${_date.getHours()}:${_date.getMinutes()}`];
 }
 
 export function formatAmount(n: string, decimals: POD_TOKEN_INTERFACE["decimals"]): string {

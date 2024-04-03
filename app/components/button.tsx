@@ -1,5 +1,6 @@
 "use client";
 import { MouseEventHandler, ReactNode, useEffect, useState } from "react";
+import Loading from "./icons/loading";
 
 interface IButton {
 	children?: ReactNode;
@@ -8,9 +9,10 @@ interface IButton {
 	style?: any;
 	onMouseLeaveValue?: string;
 	onMouseEnterValue?: string;
+	loading?: boolean;
 }
 
-const Button = ({ onClick, children, className, style, onMouseEnterValue, onMouseLeaveValue }: IButton) => {
+const Button = ({ onClick, children, className, style, onMouseEnterValue, onMouseLeaveValue, loading }: IButton) => {
 	const [text, setText] = useState<string | undefined>(onMouseLeaveValue);
 
 	useEffect(() => {
@@ -33,7 +35,15 @@ const Button = ({ onClick, children, className, style, onMouseEnterValue, onMous
 			onMouseEnter={onMouseOver}
 			onMouseLeave={onMouseOut}
 		>
-			{text ? text : children}
+			{loading ? (
+				<div className="mx-auto flex justify-center items-center">
+					<Loading />
+				</div>
+			) : text ? (
+				text
+			) : (
+				children
+			)}
 		</div>
 	);
 };

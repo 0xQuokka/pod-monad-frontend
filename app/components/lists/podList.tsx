@@ -16,6 +16,7 @@ const GET_PODS = gql`
 				id
 				name
 				symbol
+				decimals
 			}
 			decimals
 			owner {

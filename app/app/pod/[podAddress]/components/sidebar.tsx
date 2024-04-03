@@ -2,7 +2,7 @@ import { POD_INTERFACE } from "@/app/app/interfaces/Pod";
 import Card from "@/app/components/cards/Card";
 import Label from "@/app/components/text/Label";
 import Title32 from "@/app/components/text/Title32";
-import { parseOwnerAddress } from "@/utils/utils";
+import { formatNumber, parseOwnerAddress } from "@/utils/utils";
 
 interface Sidebar {
 	pod: POD_INTERFACE;
@@ -19,7 +19,7 @@ const LIST_KEY_VALUE = (key: string, value: string) => {
 
 const Sidebar = ({ pod }: Sidebar) => {
 	return (
-		<div className="w-[300px] flex flex-col gap-6">
+		<div className="w-[300px] md:w-full flex flex-col gap-6">
 			<div>
 				<Title32 className="text-white">{pod.name}</Title32>
 				<Label>{pod.description}</Label>
@@ -31,15 +31,14 @@ const Sidebar = ({ pod }: Sidebar) => {
 							<Label className="text-white">POD INFO</Label>
 						</div>
 						<div className="p-4 flex flex-col gap-1">
-							{LIST_KEY_VALUE("TVL:", pod.reserve.toString())}
+							{LIST_KEY_VALUE("TVL:", `${formatNumber(pod.reserve, pod.underlying.decimals)} ${pod.underlying.symbol}`)}
 							{LIST_KEY_VALUE("OWNER:", parseOwnerAddress(pod.owner.id))}
 							{LIST_KEY_VALUE("UNDERLYING:", pod.underlying.symbol)}
 							{LIST_KEY_VALUE("POD TICKER:", pod.symbol)}
 						</div>
 					</div>
 				</Card>
-				<Card>{LIST_KEY_VALUE("DEPOSITED", `${pod.reserve} ${pod.underlying.symbol}`)}</Card>
-				<Card>{LIST_KEY_VALUE("LOCKED", `${pod.locked} ${pod.symbol}`)}</Card>
+				<Card>{LIST_KEY_VALUE("LOCKED", `${formatNumber(pod.locked, pod.decimals)} ${pod.symbol}`)}</Card>
 			</div>
 		</div>
 	);
