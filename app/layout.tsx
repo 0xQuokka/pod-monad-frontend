@@ -13,8 +13,7 @@ const Grotesk = localFont({
 
 export const metadata: Metadata = {
 	title: "POD Finance",
-	description:
-		"Maximize your liquid assets value—stake any liquid token and boost your earnings with enhanced multi-rewards.",
+	description: "Maximize your liquid assets value—stake any liquid token and boost your earnings with enhanced multi-rewards.",
 	icons: {
 		icon: "pod_favicon.png",
 	},
@@ -27,7 +26,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={Grotesk.className}>{children}</body>
+			<body className={`${Grotesk.className} min-h-screen`}>{children}</body>
 		</html>
 	);
 }

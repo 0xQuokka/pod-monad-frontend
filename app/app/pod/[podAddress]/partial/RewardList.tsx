@@ -5,6 +5,7 @@ import RewardCard from "../components/rewardCard";
 import { useAccount, useWriteContract } from "wagmi";
 import Button from "@/app/components/button";
 import POD_ABI from "@/abis/pod";
+import { useEffect } from "react";
 
 interface IRewardList {
 	rewards: POD_REWARD_INTERFACE[];
@@ -12,7 +13,7 @@ interface IRewardList {
 }
 
 const RewardList = ({ rewards, pod }: IRewardList) => {
-	const { writeContract: writeHarvest, status: statusHarvest, isPending: isPendingHarvest } = useWriteContract();
+	const { writeContract: writeHarvest, status: statusHarvest, isPending: isPendingHarvest, error: errorHarvest } = useWriteContract();
 	const { address: account } = useAccount();
 
 	const performHarvest = () => {
@@ -25,6 +26,10 @@ const RewardList = ({ rewards, pod }: IRewardList) => {
 			args: [account],
 		});
 	};
+
+	useEffect(() => {
+		console.log({ errorHarvest });
+	}, [errorHarvest]);
 
 	return (
 		<div className="">

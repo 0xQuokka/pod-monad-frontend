@@ -6,7 +6,7 @@ import PodCard from "./podCard";
 
 const GET_PODS = gql`
 	query GetPods {
-		pods(first: 10) {
+		pods(first: 10, orderBy: rewardsCount, orderDirection: desc) {
 			id
 			name
 			symbol
@@ -19,6 +19,9 @@ const GET_PODS = gql`
 				decimals
 			}
 			decimals
+			rewards {
+				id
+			}
 			owner {
 				id
 			}
@@ -30,7 +33,7 @@ const PodList = () => {
 	const { loading, error, data } = useQuery(GET_PODS);
 
 	return (
-		<div>
+		<div className="flex flex-col gap-3">
 			{data && data.pods ? (
 				data.pods.map((pod: POD_INTERFACE) => {
 					return <PodCard pod={pod} key={pod.id} />;

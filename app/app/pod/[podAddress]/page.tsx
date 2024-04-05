@@ -5,9 +5,6 @@ import { gql, useQuery } from "@apollo/client";
 import RewardList from "./partial/RewardList";
 import DepositBox from "./partial/DepositBox";
 import LockBox from "./partial/LockBox";
-import { useAccount, useReadContract } from "wagmi";
-import ERC20_ABI from "@/abis/ERC20";
-import { ethers } from "ethers";
 
 interface PodPageParams {
 	params: {

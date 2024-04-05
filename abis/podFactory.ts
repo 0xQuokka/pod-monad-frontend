@@ -1,4 +1,4 @@
-const ABI = [
+const POD_FACTORY_ABI = [
 	{
 		inputs: [],
 		name: "PodFactoryInvalidParams",
@@ -169,4 +169,4 @@ const ABI = [
 	},
 ];
 
-export default ABI;
+export default POD_FACTORY_ABI;

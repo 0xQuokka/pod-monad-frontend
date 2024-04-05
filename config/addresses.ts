@@ -1,6 +1,12 @@
-export const FACTORY_ADDRESS: Record<number, `0x${string}`> = {
+export const POD_FACTORY_ADDRESS: Record<number, `0x${string}`> = {
 	31337: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
 };
+
+export const POD_PERIPHERY_ADDRESS: Record<number, `0x${string}`> = {
+	31337: "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
+};
+
+export const DEFAULT_CHAIN_ID = process.env.NEXT_PUBLIC_CHAIN_ID as any;
 
 /**
     Underlying deployed to 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512

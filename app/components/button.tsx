@@ -10,9 +10,10 @@ interface IButton {
 	onMouseLeaveValue?: string;
 	onMouseEnterValue?: string;
 	loading?: boolean;
+	disabled?: boolean;
 }
 
-const Button = ({ onClick, children, className, style, onMouseEnterValue, onMouseLeaveValue, loading }: IButton) => {
+const Button = ({ onClick, children, className, style, onMouseEnterValue, onMouseLeaveValue, loading, disabled }: IButton) => {
 	const [text, setText] = useState<string | undefined>(onMouseLeaveValue);
 
 	useEffect(() => {
@@ -30,7 +31,7 @@ const Button = ({ onClick, children, className, style, onMouseEnterValue, onMous
 	return (
 		<div
 			onClick={onClick}
-			className={`p-4 border border-[#323637] bg-[#17191A] transition-all hover:bg-[#202224] text-white uppercase cursor-pointer ${className}`}
+			className={`p-4 border border-[#323637] bg-[#17191A] transition-all hover:bg-[#202224] text-white uppercase ${disabled ? "opacity-50 cursor-no-drop pointer-events-none" : "cursor-pointer"} ${className}`}
 			style={{ ...style }}
 			onMouseEnter={onMouseOver}
 			onMouseLeave={onMouseOut}

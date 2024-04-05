@@ -22,6 +22,8 @@ export function formatNumber(bignumber: BigInt, decimals: Number): any {
 	}
 }
 
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 export function parseRewardDate(startDate: number, endDate: number): [string, string] {
 	const now = parseInt(new Date().getTime().toString());
 	const _rewardStartDateInUTC = new Date(startDate * 1000);
@@ -30,13 +32,13 @@ export function parseRewardDate(startDate: number, endDate: number): [string, st
 	if (now < _rewardStartDateInUTC.getTime()) {
 		const _date = new Date(startDate * 1000);
 
-		return ["STARTS", `${_date.getMonth() + 1}/${_date.getDay() + 1} ${_date.getHours()}:${_date.getMinutes()}`];
+		return ["STARTS", `${("0" + _date.getUTCDate()).slice(-2)} ${months[_date.getUTCMonth()]} ${("0" + _date.getUTCHours()).slice(-2)}:${("0" + _date.getUTCMinutes()).slice(-2)}`];
 	}
 
 	if (_rewardEndDateInUTC.getTime() < now) return ["ENDED", ""];
 
-	const _date = new Date(startDate * 1000);
-	return ["ENDS", `${_date.getMonth() + 1}/${_date.getDay() + 1} ${_date.getHours()}:${_date.getMinutes()}`];
+	const _date = new Date(endDate * 1000);
+	return ["ENDS", `${("0" + _date.getUTCDate()).slice(-2)} ${months[_date.getUTCMonth()]} ${("0" + _date.getUTCHours()).slice(-2)}:${("0" + _date.getUTCMinutes()).slice(-2)}`];
 }
 
 export function formatAmount(n: string, decimals: POD_TOKEN_INTERFACE["decimals"]): string {
