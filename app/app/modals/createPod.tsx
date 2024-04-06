@@ -122,7 +122,7 @@ interface IStep3 extends IModal {
 
 const Step3Modal = ({ setStepReady, stepBack, owner, setOwner }: IStep3) => {
 	const [valid, setValid] = useState<boolean>(false);
-	const [permissionless, setPermissionless] = useState<boolean>(true);
+	const [permissionless, setPermissionless] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (!isEthereumAddress(owner)) {
