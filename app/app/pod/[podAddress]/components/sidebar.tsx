@@ -41,7 +41,7 @@ const Sidebar = ({ pod }: Sidebar) => {
 					</div>
 				</Card>
 				<Card>{LIST_KEY_VALUE("LOCKED", `${formatNumber(pod.locked, pod.decimals)} ${pod.symbol}`)}</Card>
-				{pod.underlying.id.toLowerCase() == TESTNET_MINTABLE_UNDERLYING ? <MintableButton token={pod.underlying.id} /> : <></>}
+				{pod.underlying.id.toLowerCase() == TESTNET_MINTABLE_UNDERLYING.toLowerCase() ? <MintableButton token={pod.underlying.id} /> : <></>}
 				<a href={explorerTokenURL(pod.id)} rel="noreferrer" target="_blank" className="text-white underline cursor-pointer mt-4">
 					View POD in explorer
 				</a>

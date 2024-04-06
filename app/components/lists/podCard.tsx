@@ -17,7 +17,9 @@ const PodCard = ({ pod }: IPodCard) => {
 			return _acc + parseFloat(formatAmount(_reward.remainingAmount.toString(), _reward.token.decimals));
 		}, 0);
 
-		return ((_aggregatedAmount / parseFloat(formatAmount(pod.locked.toString(), pod.decimals))) * 100).toFixed(2);
+		if (parseInt(pod.locked.toString()) == 0) return (0).toFixed(2);
+
+		return ((_aggregatedAmount / parseFloat(formatAmount((pod.locked || "0").toString(), pod.decimals))) * 100).toFixed(2);
 	};
 
 	return (
