@@ -2,7 +2,7 @@
 
 import { darkTheme, getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { http, WagmiProvider } from "wagmi";
-import { Chain } from "wagmi/chains";
+import { Chain, baseSepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const RainbowWrapper = ({ children }: any) => {
@@ -28,9 +28,9 @@ const RainbowWrapper = ({ children }: any) => {
 	const wagmiConfig = getDefaultConfig({
 		appName: "Pumpkin Finance APP",
 		projectId: "YOUR_PROJECT_ID",
-		chains: [localhost],
+		chains: [baseSepolia],
 		transports: {
-			[localhost.id]: http(),
+			[baseSepolia.id]: http(),
 		},
 	});
 

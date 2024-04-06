@@ -19,7 +19,7 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
 				setModal,
 			}}
 		>
-			<div className="relative lg:flex items-center justify-center">
+			<div className="relative flex items-center justify-center">
 				{modal && (
 					<>
 						<div
@@ -36,8 +36,6 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
 							className="mx-auto absolute z-50"
 							style={{
 								top: "20vh",
-								left: "0",
-								right: "0",
 								padding: "12px",
 							}}
 						>

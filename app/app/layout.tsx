@@ -16,7 +16,7 @@ interface ILayout {
 const Layout = ({ children }: ILayout) => {
 	const apolloClient = new ApolloClient({
 		link: new HttpLink({
-			uri: process.env.NEXT_PUBLIC_THEGRAPH_API_URL as string,
+			uri: process.env.THEGRAPH_API_URL as string,
 			fetchOptions: {
 				mode: "cors",
 			},

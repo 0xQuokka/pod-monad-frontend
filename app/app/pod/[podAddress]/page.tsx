@@ -1,10 +1,10 @@
-"use client";
 import { Address } from "viem";
 import Sidebar from "./components/sidebar";
 import { gql, useQuery } from "@apollo/client";
 import RewardList from "./partial/RewardList";
 import DepositBox from "./partial/DepositBox";
 import LockBox from "./partial/LockBox";
+import { getClient } from "@/lib/apolloClientRC";
 
 interface PodPageParams {
 	params: {
@@ -47,9 +47,17 @@ const GET_PODS = gql`
 	}
 `;
 
-const PodPage = ({ params }: PodPageParams) => {
-	const { loading, error, data } = useQuery(GET_PODS, {
-		variables: { id: params.podAddress },
+const PodPage = async ({ params }: PodPageParams) => {
+	const { data } = await getClient().query({
+		query: GET_PODS,
+		variables: {
+			id: params.podAddress,
+		},
+		context: {
+			fetchOptions: {
+				next: { revalidate: 60 },
+			},
+		},
 	});
 
 	return (

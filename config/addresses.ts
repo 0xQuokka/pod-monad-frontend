@@ -1,9 +1,11 @@
 export const POD_FACTORY_ADDRESS: Record<number, `0x${string}`> = {
 	31337: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+	84532: "0xA9afDccD466ff902785f0bcDC4B30200DA454E27",
 };
 
 export const POD_PERIPHERY_ADDRESS: Record<number, `0x${string}`> = {
 	31337: "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
+	84532: "0xe9a8eB867006F137269b504E692e67132D81C17B",
 };
 
 export const DEFAULT_CHAIN_ID = process.env.NEXT_PUBLIC_CHAIN_ID as any;
