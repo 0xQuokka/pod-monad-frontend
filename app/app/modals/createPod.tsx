@@ -17,12 +17,9 @@ import { DEFAULT_CHAIN_ID, POD_FACTORY_ADDRESS } from "@/config/addresses";
 import Link from "next/link";
 import { appURL } from "@/config/enviroment";
 import { ModalContext } from "@/services/ModalProvider";
+import { IModal } from "../interfaces/Modal";
 
-interface IStep {
-	setStepReady: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface IStep1 extends IStep {
+interface IStep1 extends IModal {
 	address: string;
 	setAddress: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -58,7 +55,7 @@ const Step1Modal = ({ setStepReady, address, setAddress }: IStep1) => {
 	);
 };
 
-interface IStep2 extends IStep {
+interface IStep2 extends IModal {
 	stepBack: Function;
 	name: string;
 	setName: React.Dispatch<React.SetStateAction<string>>;
@@ -117,7 +114,7 @@ const Step2Modal = ({ setStepReady, stepBack, name, setName, symbol, setSymbol, 
 	);
 };
 
-interface IStep3 extends IStep {
+interface IStep3 extends IModal {
 	stepBack: Function;
 	owner: string;
 	setOwner: React.Dispatch<React.SetStateAction<string>>;
@@ -125,7 +122,7 @@ interface IStep3 extends IStep {
 
 const Step3Modal = ({ setStepReady, stepBack, owner, setOwner }: IStep3) => {
 	const [valid, setValid] = useState<boolean>(false);
-	const [permissionless, setPermissionless] = useState<boolean>(false);
+	const [permissionless, setPermissionless] = useState<boolean>(true);
 
 	useEffect(() => {
 		if (!isEthereumAddress(owner)) {
@@ -186,7 +183,7 @@ const Step3Modal = ({ setStepReady, stepBack, owner, setOwner }: IStep3) => {
 	);
 };
 
-interface IStep4 extends IStep {
+interface IStep4 extends IModal {
 	stepBack: Function;
 	underlying: string;
 	name: string;
@@ -302,7 +299,7 @@ const Step5Modal = ({ createdPodAddress }: IStep5) => {
 };
 
 const CreatePodModal = () => {
-	const [underlying, setUnderlying] = useState<string>("0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512");
+	const [underlying, setUnderlying] = useState<string>("");
 
 	const [name, setName] = useState<string>("");
 	const [symbol, setSymbol] = useState<string>("");
@@ -331,7 +328,7 @@ const CreatePodModal = () => {
 	}, [stepReady]);
 
 	return (
-		<div className="w-[432px]">
+		<div className="w-[432px] sm:w-full sm:text-sm">
 			{step === 1 && <Step1Modal address={underlying} setAddress={setUnderlying} setStepReady={setStepReady}></Step1Modal>}
 			{step === 2 && <Step2Modal stepBack={stepBack} setStepReady={setStepReady} name={name} setName={setName} symbol={symbol} setSymbol={setSymbol} description={description} setDescription={setDescription} />}
 			{step === 3 && <Step3Modal owner={podOwner} setOwner={setPodOwner} stepBack={stepBack} setStepReady={setStepReady}></Step3Modal>}

@@ -41,6 +41,18 @@ export function parseRewardDate(startDate: number, endDate: number): [string, st
 	return ["ENDS", `${("0" + _date.getUTCDate()).slice(-2)} ${months[_date.getUTCMonth()]} ${("0" + _date.getUTCHours()).slice(-2)}:${("0" + _date.getUTCMinutes()).slice(-2)}`];
 }
 
+export function parseGenericDate(d: Date): string {
+	const _date = new Date(d);
+
+	return `${("0" + _date.getUTCDate()).slice(-2)} ${months[_date.getUTCMonth()]} ${("0" + _date.getUTCHours()).slice(-2)}:${("0" + _date.getUTCMinutes()).slice(-2)}`;
+}
+
+export function genericDateToUTCSeconds(d: Date): number {
+	const _date = new Date(d);
+
+	return parseInt((_date.getTime() / 1000).toString());
+}
+
 export function formatAmount(n: string, decimals: POD_TOKEN_INTERFACE["decimals"]): string {
 	return parseFloat(ethers.formatUnits(n, parseInt(decimals.toString()))).toFixed(2);
 }

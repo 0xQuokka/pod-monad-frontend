@@ -5,7 +5,9 @@ import RewardCard from "../components/rewardCard";
 import { useAccount, useWriteContract } from "wagmi";
 import Button from "@/app/components/button";
 import POD_ABI from "@/abis/pod";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { ModalContext } from "@/services/ModalProvider";
+import AddRewardModal from "@/app/app/modals/addReward";
 
 interface IRewardList {
 	rewards: POD_REWARD_INTERFACE[];
@@ -13,6 +15,7 @@ interface IRewardList {
 }
 
 const RewardList = ({ rewards, pod }: IRewardList) => {
+	const { setModal } = useContext(ModalContext);
 	const { writeContract: writeHarvest, status: statusHarvest, isPending: isPendingHarvest, error: errorHarvest } = useWriteContract();
 	const { address: account } = useAccount();
 
@@ -27,23 +30,32 @@ const RewardList = ({ rewards, pod }: IRewardList) => {
 		});
 	};
 
-	useEffect(() => {
-		console.log({ errorHarvest });
-	}, [errorHarvest]);
+	const openAddRewardModal = () => {
+		window.scrollTo({
+			top: 0,
+		});
+		setModal(<AddRewardModal pod={pod} />);
+	};
 
 	return (
 		<div className="">
-			<header className="flex justify-between items-center">
+			<header className="flex justify-between items-center sm:flex-col sm:items-start">
 				<Title32 className="text-white">REWARDS</Title32>
-				<div>
-					<Button onClick={performHarvest} loading={isPendingHarvest}>
-						HARVEST ALL
-					</Button>
+				<div className="flex gap-2">
+					<div>
+						<Button onClick={openAddRewardModal} loading={isPendingHarvest}>
+							CREATE REWARD
+						</Button>
+					</div>
+					<div>
+						<Button onClick={performHarvest} loading={isPendingHarvest}>
+							HARVEST ALL
+						</Button>
+					</div>
 				</div>
 			</header>
 			<div className="flex-1 mt-8 flex flex-col gap-4">
 				{rewards.map((reward: POD_REWARD_INTERFACE) => {
-					console.log(reward.token.id);
 					return <RewardCard key={reward.id} reward={reward} />;
 				})}
 			</div>

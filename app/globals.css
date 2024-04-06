@@ -27,6 +27,11 @@ input[type="checkbox"]:checked {
 	background: white;
 }
 
+::-webkit-calendar-picker-indicator {
+	border-radius: 100%;
+	background: white;
+}
+
 .backdrop {
 	position: fixed;
 	top: 0;

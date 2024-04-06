@@ -14,9 +14,12 @@ interface ITokenAddressInput {
 	setAddress: React.Dispatch<React.SetStateAction<string>>;
 	setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 	setValid: React.Dispatch<React.SetStateAction<boolean>>;
+	setTicker?: React.Dispatch<React.SetStateAction<string>>;
+	setName?: React.Dispatch<React.SetStateAction<string>>;
+	setDecimals?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const TokenAddressInput = ({ address, setAddress, setLoading, setValid }: ITokenAddressInput) => {
+const TokenAddressInput = ({ address, setAddress, setLoading, setValid, setTicker, setName, setDecimals }: ITokenAddressInput) => {
 	const paste = () => {
 		navigator.clipboard.readText().then((value) => {
 			setAddress(value);
@@ -51,11 +54,20 @@ const TokenAddressInput = ({ address, setAddress, setLoading, setValid }: IToken
 
 	useEffect(() => {
 		if (isEthereumAddress(debouncedAddress) && lookupData && lookupData[0] && lookupData[1] && lookupData[2]) {
+			if (setTicker) {
+				setTicker(lookupData[1]);
+			}
+			if (setName) {
+				setName(lookupData[0]);
+			}
+			if (setDecimals) {
+				setDecimals(parseInt(lookupData[2]));
+			}
 			setValid(true);
 		} else {
 			setValid(false);
 		}
-	}, [lookupData, setValid, debouncedAddress]);
+	}, [lookupData, setValid, debouncedAddress, setTicker, setName, setDecimals]);
 
 	const onChangeInput = (e: any) => {
 		setAddress(e.target.value);

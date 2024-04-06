@@ -11,10 +11,20 @@ const config: Config = {
 				neutral: "#323637",
 				"neutral-border": "#323637",
 				"neutral-black": "#17191A",
+				"neutral-black-secondary": "#202224",
 			},
 			screens: {
 				md: {
-					raw: "(max-width: 900px)",
+					raw: "(max-width: 940px)",
+				},
+				sm: {
+					raw: "(max-width: 500px)",
+				},
+				aboveSm: {
+					raw: "(min-width: 500px)",
+				},
+				lg: {
+					raw: "(min-width: 940px)",
 				},
 			},
 		},
