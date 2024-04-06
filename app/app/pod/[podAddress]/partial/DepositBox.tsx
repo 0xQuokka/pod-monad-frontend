@@ -166,7 +166,7 @@ const DepositBox = ({ pod }: IDepositBox) => {
 				</div>
 			</div>
 			<div className="mt-2 mb-6">
-				<Label>Deposit your {actionToken.symbol}</Label>
+				<div className="text-gray">Deposit your {actionToken.symbol}</div>
 			</div>
 			<div>
 				<GenericInput balance={balance} token={actionToken} amount={amount} setAmount={setAmount} label={labelByAction[action]} />

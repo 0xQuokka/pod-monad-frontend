@@ -15,6 +15,8 @@ const GET_PODS = gql`
 			name
 			symbol
 			reserve
+			locked
+			decimals
 			description
 			underlying {
 				id
@@ -25,6 +27,11 @@ const GET_PODS = gql`
 			decimals
 			rewards {
 				id
+				amount
+				remainingAmount
+				token {
+					decimals
+				}
 			}
 			owner {
 				id

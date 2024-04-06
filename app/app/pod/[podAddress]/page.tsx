@@ -34,6 +34,7 @@ const GET_PODS = gql`
 			rewards {
 				id
 				token {
+					id
 					name
 					symbol
 					decimals

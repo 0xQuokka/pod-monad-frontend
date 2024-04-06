@@ -2,7 +2,9 @@ import { POD_INTERFACE } from "@/app/app/interfaces/Pod";
 import Card from "@/app/components/cards/Card";
 import Label from "@/app/components/text/Label";
 import Title32 from "@/app/components/text/Title32";
+import { TESTNET_MINTABLE_UNDERLYING, explorerTokenURL } from "@/config/enviroment";
 import { formatNumber, parseOwnerAddress } from "@/utils/utils";
+import MintableButton from "./mintableButton";
 
 interface Sidebar {
 	pod: POD_INTERFACE;
@@ -12,7 +14,7 @@ const LIST_KEY_VALUE = (key: string, value: string) => {
 	return (
 		<div className="flex justify-between items-center">
 			<Label>{key}</Label>
-			<Label className="text-white">{value}</Label>
+			<div className="text-white">{value}</div>
 		</div>
 	);
 };
@@ -39,6 +41,10 @@ const Sidebar = ({ pod }: Sidebar) => {
 					</div>
 				</Card>
 				<Card>{LIST_KEY_VALUE("LOCKED", `${formatNumber(pod.locked, pod.decimals)} ${pod.symbol}`)}</Card>
+				{pod.underlying.id.toLowerCase() == TESTNET_MINTABLE_UNDERLYING ? <MintableButton token={pod.underlying.id} /> : <></>}
+				<a href={explorerTokenURL(pod.id)} rel="noreferrer" target="_blank" className="text-white underline cursor-pointer mt-4">
+					View POD in explorer
+				</a>
 			</div>
 		</div>
 	);

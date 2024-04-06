@@ -85,7 +85,7 @@ export default function Home() {
 						</a>
 						<a href="https://t.me/podfinance" target="_blank" rel="noreferrer" className="flex gap-4 items-center w-[200px] text-[#737E80] hover:text-white">
 							<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<g clip-path="url(#clip0_88_3845)">
+								<g clipPath="url(#clip0_88_3845)">
 									<circle cx="20" cy="20" r="19.5" fill="#101212" stroke="currentColor" />
 									<line x1="19.5" y1="67" x2="19.5" y2="20" stroke="currentColor" />
 									<line x1="19.5" y1="58" x2="19.5" y2="11" stroke="currentColor" />

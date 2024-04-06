@@ -41,18 +41,20 @@ const RewardList = ({ rewards, pod }: IRewardList) => {
 		<div className="">
 			<header className="flex justify-between items-center sm:flex-col sm:items-start">
 				<Title32 className="text-white">REWARDS</Title32>
-				<div className="flex gap-2">
-					<div>
-						<Button onClick={openAddRewardModal} loading={isPendingHarvest}>
-							CREATE REWARD
-						</Button>
+				{account && (
+					<div className="flex gap-2">
+						<div>
+							<Button onClick={openAddRewardModal} loading={isPendingHarvest}>
+								CREATE REWARD
+							</Button>
+						</div>
+						<div>
+							<Button onClick={performHarvest} loading={isPendingHarvest}>
+								HARVEST ALL
+							</Button>
+						</div>
 					</div>
-					<div>
-						<Button onClick={performHarvest} loading={isPendingHarvest}>
-							HARVEST ALL
-						</Button>
-					</div>
-				</div>
+				)}
 			</header>
 			<div className="flex-1 mt-8 flex flex-col gap-4">
 				{rewards.map((reward: POD_REWARD_INTERFACE) => {
