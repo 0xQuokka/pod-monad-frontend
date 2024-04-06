@@ -26,12 +26,13 @@ const RainbowWrapper = ({ children }: any) => {
 	};
 
 	const wagmiConfig = getDefaultConfig({
-		appName: "Pumpkin Finance APP",
+		appName: "POD Finance APP",
 		projectId: "YOUR_PROJECT_ID",
 		chains: [baseSepolia],
 		transports: {
 			[baseSepolia.id]: http(),
 		},
+		ssr: true,
 	});
 
 	const queryClient = new QueryClient();
