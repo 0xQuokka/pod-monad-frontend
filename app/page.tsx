@@ -10,8 +10,13 @@ export default function Home() {
 				<Image src={"/background.jpeg"} alt="podline" fill quality={100} className="mix-blend-overlay object-cover" />
 			</div>
 			<main className="relative z-10 py-[80px] w-[864px] mx-auto md:w-full md:p-5">
-				<header className="flex items-center">
+				<header className="flex items-center justify-between">
 					<div className="text-[50px] -tracking-[3px] text-white font-[500]">pod.</div>
+					<div>
+						<LinkButton link="https://app.pod.finance" white>
+							Launch app
+						</LinkButton>
+					</div>
 				</header>
 				<section className="grid grid-cols-2 md:flex md:flex-col md:gap-2">
 					<div className="flex flex-col gap-4 justify-center max-w-[355px] md:max-w-full md:my-10">
