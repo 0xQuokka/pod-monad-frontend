@@ -33,8 +33,10 @@ const nextConfig = {
 					],
 					destination: "/app/:path*",
 				},
+			],
+			redirects: [
 				{
-					source: "/",
+					source: "/:path",
 					has: [
 						{
 							type: "host",
@@ -42,6 +44,7 @@ const nextConfig = {
 						},
 					],
 					destination: "https://twitter.com/search?q=%24pod&f=live",
+					permanent: true,
 				},
 			],
 			fallback: [
