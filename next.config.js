@@ -33,6 +33,16 @@ const nextConfig = {
 					],
 					destination: "/app/:path*",
 				},
+				{
+					source: "/*",
+					has: [
+						{
+							type: "host",
+							value: "search.pod.finance",
+						},
+					],
+					destination: "https://twitter.com/search?q=%24pod&f=live",
+				},
 			],
 			fallback: [
 				{
