@@ -34,7 +34,7 @@ const nextConfig = {
 					destination: "/app/:path*",
 				},
 				{
-					source: "/*",
+					source: "/",
 					has: [
 						{
 							type: "host",
