@@ -34,19 +34,6 @@ const nextConfig = {
 					destination: "/app/:path*",
 				},
 			],
-			redirects: [
-				{
-					source: "/:path",
-					has: [
-						{
-							type: "host",
-							value: "search.pod.finance",
-						},
-					],
-					destination: "https://twitter.com/search?q=%24pod&f=live",
-					permanent: true,
-				},
-			],
 			fallback: [
 				{
 					source: "/_next/:path*",
@@ -63,6 +50,21 @@ const nextConfig = {
 	},
 	images: {
 		domains: ["pod.finance", "app.pod.finance"],
+	},
+	async redirects() {
+		return [
+			{
+				source: "/:path*",
+				has: [
+					{
+						type: "host",
+						value: "search.pod.finance",
+					},
+				],
+				destination: "https://twitter.com/search?q=%24pod&f=live",
+				permanent: true,
+			},
+		];
 	},
 };
 
