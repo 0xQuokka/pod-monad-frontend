@@ -13,7 +13,15 @@ const CreatePodButton = () => {
 		setModal(<CreatePodModal />);
 	};
 
-	return <>{account && <Button onClick={() => openCreatePodModal()}>Create a pod</Button>}</>;
+	return (
+		<>
+			{
+				<Button disabled={!account} onClick={() => openCreatePodModal()}>
+					Create a pod
+				</Button>
+			}
+		</>
+	);
 };
 
 export default CreatePodButton;

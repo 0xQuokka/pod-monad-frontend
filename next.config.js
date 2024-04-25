@@ -49,7 +49,7 @@ const nextConfig = {
 		};
 	},
 	images: {
-		domains: ["pod.finance", "app.pod.finance"],
+		domains: ["pod.finance", "app.pod.finance", "cdn.statically.io"],
 	},
 	async redirects() {
 		return [

@@ -12,6 +12,8 @@ const config: Config = {
 				"neutral-border": "#323637",
 				"neutral-black": "#17191A",
 				"neutral-black-secondary": "#202224",
+				yellow: "#FFD52E",
+				green: "#43B055",
 			},
 			screens: {
 				md: {

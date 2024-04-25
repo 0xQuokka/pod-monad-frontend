@@ -42,3 +42,19 @@ input[type="checkbox"]:checked {
 	backdrop-filter: blur(8px);
 	z-index: 40;
 }
+
+.blur-background {
+	filter: blur(100px);
+	opacity: 0.35;
+}
+
+.tooltip {
+	display: inline-block;
+	position: absolute;
+}
+
+.tooltip.top {
+	padding-bottom: 8px;
+	left: 0;
+	top: -100%;
+}

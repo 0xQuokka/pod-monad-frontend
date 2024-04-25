@@ -5,11 +5,10 @@ import TokenAddressInput from "../pod/[podAddress]/components/tokenAddressInput"
 import Button from "@/app/components/button";
 import StringInput from "../pod/[podAddress]/components/stringInput";
 import Label from "@/app/components/text/Label";
-import { isEthereumAddress, parseAddress, parseBytes32Address } from "@/utils/address";
+import { isEthereumAddress, parseAddress, parseBytes32Address, parseOwnerAddress } from "@/utils/address";
 import GenericAddressInput from "../pod/[podAddress]/components/genericAddressInput";
 import { ethers } from "ethers";
 import Card from "@/app/components/cards/Card";
-import { parseOwnerAddress } from "@/utils/utils";
 import { Address } from "viem";
 import { useTransaction, useTransactionReceipt, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import POD_FACTORY_ABI from "@/abis/podFactory";

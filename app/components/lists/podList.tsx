@@ -1,13 +1,12 @@
 import { POD_INTERFACE } from "@/app/app/interfaces/Pod";
-import { useQuery, gql } from "@apollo/client";
-import { useEffect } from "react";
 import PodCard from "./podCard";
+import { getTokenMapping } from "@/utils/build/getTokenMapping";
 
 interface IPodList {
 	pods: POD_INTERFACE[];
 }
 
-const PodList = ({ pods }: IPodList) => {
+const PodList = async ({ pods }: IPodList) => {
 	return (
 		<div className="flex flex-col gap-3">
 			{pods ? (

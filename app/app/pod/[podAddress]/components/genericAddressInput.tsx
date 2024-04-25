@@ -34,6 +34,8 @@ const GenericAddressInput = ({ address, setAddress, setValid, placeholder }: IGe
 				{!isEthereumAddress(address) ? (
 					<input
 						type={`text`}
+						spellCheck="false"
+						autoComplete="off"
 						className={`w-full flex-1 outline-none text-left text-white focus:placeholder:opacity-0 bg-neutral-black text-sm uppercase ${address && !isEthereumAddress(address) ? "text-[#C45151]" : "text-success"}`}
 						value={address ? (isEthereumAddress(address) ? parseAddress(address) : address) : ""}
 						onChange={onChangeInput}

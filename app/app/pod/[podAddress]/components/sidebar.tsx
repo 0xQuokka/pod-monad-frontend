@@ -3,8 +3,9 @@ import Card from "@/app/components/cards/Card";
 import Label from "@/app/components/text/Label";
 import Title32 from "@/app/components/text/Title32";
 import { TESTNET_MINTABLE_UNDERLYING, explorerTokenURL } from "@/config/enviroment";
-import { formatNumber, parseOwnerAddress } from "@/utils/utils";
+import { formatNumber } from "@/utils/utils";
 import MintableButton from "./mintableButton";
+import { parseOwnerAddress } from "@/utils/address";
 
 interface Sidebar {
 	pod: POD_INTERFACE;

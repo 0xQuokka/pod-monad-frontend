@@ -2,12 +2,6 @@ import { POD_TOKEN_INTERFACE } from "@/app/app/interfaces/Pod";
 import { ethers } from "ethers";
 import { Address } from "viem";
 
-export const parseOwnerAddress = (address: Address): string => {
-	if (address.toLowerCase() === ethers.ZeroAddress.toLowerCase()) return "PERMISSIONLESS";
-
-	return `0x${address.slice(1, 3)}...${address.slice(-5)}`;
-};
-
 export function formatNumber(bignumber: BigInt, decimals: Number): any {
 	const number = parseFloat(ethers.formatUnits(bignumber.toString(), parseInt(decimals.toString())).toString());
 
