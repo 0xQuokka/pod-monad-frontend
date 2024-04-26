@@ -6,7 +6,19 @@ import { useContext } from "react";
 
 const AvailablePods = () => {
 	const { podFactory }: any = useContext(PodsContext);
-	return <div>{podFactory && podFactory.availablePods ? <Label>{podFactory.availablePods} currently active</Label> : <Label>0 currently active</Label>}</div>;
+	return (
+		<div>
+			{podFactory && podFactory.availablePods ? (
+				<Label>
+					<span className="text-white">{podFactory.availablePods}</span> currently active
+				</Label>
+			) : (
+				<Label>
+					<span className="text-white">0</span> currently active
+				</Label>
+			)}
+		</div>
+	);
 };
 
 export default AvailablePods;

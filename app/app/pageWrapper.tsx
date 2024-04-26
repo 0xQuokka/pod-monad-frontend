@@ -7,14 +7,19 @@ import AvailablePods from "./components/availablePods";
 const PageWrapper = async () => {
 	return (
 		<>
-			<div className="flex xmd:flex-col xmd:items-start xms:justify-start xmd:gap-2 justify-between items-center">
-				<div>
-					<Title32 className="text-white">ALL PODS</Title32>
+			<Title32 className="text-white">POD STATION</Title32>
+			<p className="text-gray max-w-[400px] mt-2">
+				Here you can find all of the <span className="text-white">created pods</span>, as well as genesis pods, which are pods created by <span className="text-white">verified communities.</span>
+			</p>
+			<div className="flex xmd:flex-col xmd:items-start xms:justify-start xmd:gap-2 justify-between items-center mt-6">
+				<div className="flex gap-6 items-center sm:flex-col-reverse sm:items-start sm:gap-2">
+					<div>
+						<CreatePodButton />
+					</div>
 					<AvailablePods />
 				</div>
 				<div className="flex gap-2">
 					<Search />
-					<CreatePodButton />
 				</div>
 			</div>
 			<div className="flex flex-col gap-2 mt-4">

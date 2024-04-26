@@ -66,7 +66,7 @@ const SearchInput = ({ tokenList, setResult }: ISearchInput) => {
 					}}
 					spellCheck="false"
 					autoComplete="off"
-					className="w-full flex-1 outline-none text-left text-white focus:placeholder:opacity-0 bg-neutral-black"
+					className="w-full flex-1 outline-none text-left text-white focus:placeholder:opacity-0 bg-transparent"
 					placeholder="SEARCH TOKEN OR PASTE ADDRESS"
 				/>
 			</div>
