@@ -13,7 +13,7 @@ const TokenLogo = ({ logo, name, size = 24 }: ITokenLogo) => {
 	// offset padding (8px) + border left and right
 	const _size = defaultLogo ? size : size + 18;
 	return (
-		<div className={`${defaultLogo ? "p-2 bg-neutral-black-secondary border border-neutral-border" : ""} rounded-full overflow-hidden inline-block`}>
+		<div className={`${defaultLogo ? "p-2 bg-neutral-black-secondary" : ""}  border border-neutral-border rounded-full overflow-hidden inline-block`}>
 			<Image src={logoURL} alt={`${name} logo`} quality={100} width={_size} height={_size} className="rounded-full" />
 		</div>
 	);

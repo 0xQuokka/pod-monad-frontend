@@ -11,7 +11,7 @@ export async function GET(req: Request, { params }: { params: { underlying: stri
 		query: query,
 		context: {
 			fetchOptions: {
-				next: { revalidate: 120 },
+				next: { revalidate: 1800, tags: [`underlying_${underlying.toLowerCase()}`] },
 			},
 		},
 	});
@@ -31,4 +31,4 @@ export async function GET(req: Request, { params }: { params: { underlying: stri
 	);
 }
 
-export const revalidate = 120;
+export const revalidate = 1800;

@@ -26,7 +26,7 @@ export const TokensProvider = ({ children }: { children: React.ReactNode }) => {
 	async function getTokenList() {
 		const res = await fetch(process.env.NEXT_PUBLIC_TOKEN_LIST as string, {
 			next: {
-				revalidate: 21600,
+				revalidate: 120,
 				tags: ["pod-token-list"],
 			},
 		});
@@ -39,7 +39,7 @@ export const TokensProvider = ({ children }: { children: React.ReactNode }) => {
 	async function getTokenMapping() {
 		const res = await fetch(process.env.NEXT_PUBLIC_TOKEN_MAPPING as string, {
 			next: {
-				revalidate: 21600,
+				revalidate: 120,
 				tags: ["pod-token-list"],
 			},
 		});
