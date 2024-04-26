@@ -2,7 +2,7 @@
 
 import { darkTheme, getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { http, WagmiProvider } from "wagmi";
-import { Chain, baseSepolia } from "wagmi/chains";
+import { Chain, baseSepolia, base } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const RainbowWrapper = ({ children }: any) => {
@@ -28,9 +28,10 @@ const RainbowWrapper = ({ children }: any) => {
 	const wagmiConfig = getDefaultConfig({
 		appName: "POD Finance APP",
 		projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
-		chains: [baseSepolia],
+		chains: [baseSepolia, base],
 		transports: {
 			[baseSepolia.id]: http(),
+			[base.id]: http(),
 		},
 		ssr: true,
 	});

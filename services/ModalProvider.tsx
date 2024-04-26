@@ -20,12 +20,6 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
 			}}
 		>
 			<div className="relative flex flex-col items-center justify-center">
-				<div className="p-4 text-white bg-neutral-black border-b border-neutral-border flex-1 w-full text-center">
-					This is a Based Sepolia Testnet deployment. Learn how to get testnet tokens{" "}
-					<a href="https://mirror.xyz/0x24493F95778c60F76b7F91aB0EF4f4c83A9e3FC8/F4niMEfZytpSAPytONy_tKsg4_A733JbMJ9xrJrOUVM" rel="noreferrrer" target="_blank" className="underline cursor-pointer">
-						in this article.
-					</a>
-				</div>
 				{modal && (
 					<>
 						<div
