@@ -1,7 +1,10 @@
 import { POD_REWARD_INTERFACE } from "@/app/app/interfaces/Pod";
 import Card from "@/app/components/cards/Card";
 import { explorerTokenURL, explorerURL } from "@/config/enviroment";
+import { TokensContext } from "@/services/TokensProvider";
 import { formatNumber, parseRewardDate } from "@/utils/utils";
+import { useContext } from "react";
+import RewardCardToken from "./rewardCardToken";
 
 interface IRewardCard {
 	reward: POD_REWARD_INTERFACE;
@@ -12,19 +15,20 @@ const RewardCard = ({ reward }: IRewardCard) => {
 
 	return (
 		<Card noPadding={true}>
-			<div className="flex items-center text-white">
-				<div className="border-r border-neutral-border">
-					<a href={explorerTokenURL(reward.token.id)} rel="noreferrer" target="_blank" className="p-4 underline">
-						{reward.token.symbol}
-					</a>
+			<header className="flex sm:flex-col sm:gap-3 justify-between items-start p-3">
+				<div>
+					<RewardCardToken token={reward.token} />
 				</div>
-				<div className="px-4 flex md:flex-col justify-between items-center md:items-start p-4 flex-1 uppercase">
-					<div>{`Amount: ${formatNumber(reward.remainingAmount, reward.token.decimals || 18)}`}</div>
-					<div className="text-right md:text-left">
-						<span>
-							<span className="text-gray">{label}</span> {date ? `${date} UTC` : ""}
-						</span>
-					</div>
+				<div className="text-right md:text-left">
+					<span className="text-white">
+						<span className="text-gray">{label}</span> {date ? `${date} UTC` : ""}
+					</span>
+				</div>
+			</header>
+			<div className="flex items-center justify-between p-4 text-white border-t border-neutral-border">
+				<div className="text-gray">REMAINING AMOUNT</div>
+				<div>
+					{formatNumber(reward.remainingAmount, reward.token.decimals || 18)} {reward.token.symbol}
 				</div>
 			</div>
 		</Card>

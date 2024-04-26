@@ -1,33 +1,46 @@
+"use client";
 import { POD_INTERFACE } from "@/app/app/interfaces/Pod";
 import PodCard from "./podCard";
 import { GENESIS_PODS } from "@/config/genesis";
+import { useContext, useEffect, useState } from "react";
+import { PodsContext } from "@/services/PodsProvider";
+import { TokensContext } from "@/services/TokensProvider";
 
-interface IPodGrid {
-	pods: POD_INTERFACE[];
-}
+const PodGrid = () => {
+	const { pods, loadingPods } = useContext(PodsContext);
+	const { getTokenInfo } = useContext(TokensContext);
 
-const PodGrid = async ({ pods }: IPodGrid) => {
-	const genesisPods: POD_INTERFACE[] = [];
-	const nonGenesisPods: POD_INTERFACE[] = [];
-	pods.map((_pod) => {
-		if (GENESIS_PODS[_pod.id.toLowerCase()] == true) {
-			genesisPods.push(_pod);
-		} else {
-			nonGenesisPods.push(_pod);
-		}
-	});
+	const [genesisPods, setGenesisPods] = useState<POD_INTERFACE[]>([]);
+	const [nonGenesisPods, setNonGenesisPods] = useState<POD_INTERFACE[]>([]);
+
+	useEffect(() => {
+		const _genesisPods: POD_INTERFACE[] = [];
+		const _nonGenesisPods: POD_INTERFACE[] = [];
+
+		pods.map((_pod) => {
+			if (GENESIS_PODS[_pod.id.toLowerCase()] == true) {
+				_genesisPods.push(_pod);
+			} else {
+				_nonGenesisPods.push(_pod);
+			}
+		});
+		setGenesisPods(_genesisPods);
+		setNonGenesisPods(_nonGenesisPods);
+	}, [pods]);
 	return (
-		<div className="grid grid-cols-2 gap-3">
+		<div className="grid grid-cols-2 md:grid-cols-1 gap-3">
 			{genesisPods ? (
 				genesisPods.map((pod: POD_INTERFACE) => {
-					return <PodCard pod={pod} key={pod.id} genesis={true} />;
+					const underlying = getTokenInfo(pod.underlying);
+					return <PodCard pod={pod} key={pod.id} genesis={true} underlying={underlying} />;
 				})
 			) : (
 				<></>
 			)}
 			{nonGenesisPods ? (
 				nonGenesisPods.map((pod: POD_INTERFACE) => {
-					return <PodCard pod={pod} key={pod.id} />;
+					const underlying = getTokenInfo(pod.underlying);
+					return <PodCard pod={pod} key={pod.id} underlying={underlying} />;
 				})
 			) : (
 				<></>

@@ -22,6 +22,9 @@ const config: Config = {
 				sm: {
 					raw: "(max-width: 500px)",
 				},
+				xmd: {
+					raw: "(max-width: 560px)",
+				},
 				aboveSm: {
 					raw: "(min-width: 500px)",
 				},

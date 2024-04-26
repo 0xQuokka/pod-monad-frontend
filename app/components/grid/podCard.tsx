@@ -1,8 +1,7 @@
 import { POD_INTERFACE } from "@/app/app/interfaces/Pod";
 import Link from "next/link";
-import { appURL, explorerTokenURL, explorerURL } from "@/config/enviroment";
+import { appURL, explorerURL } from "@/config/enviroment";
 import { formatNumber } from "@/utils/utils";
-import { getTokenInfo } from "@/utils/build/getTokenInfo";
 import { calculateAPR } from "@/utils/pod";
 import TokenLogo from "../token/tokenLogo";
 import PaperIcon from "../icons/paper";
@@ -13,20 +12,22 @@ import ClosedLockIcon from "../icons/closedLock";
 import Label from "../text/Label";
 import Tooltip from "../tooltip/tooltip";
 import ExternalIcon from "../icons/external";
+import { TOKEN_INTERFACE } from "@/app/app/interfaces/Token";
+import PodCardReward from "./podCard/podCardReward";
 
 interface IPodCard {
 	pod: POD_INTERFACE;
 	genesis?: boolean;
+	underlying: TOKEN_INTERFACE;
 }
 
-const PodCard = async ({ pod, genesis = false }: IPodCard) => {
+const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 	const apr = calculateAPR(pod);
 
-	const underlying = await getTokenInfo(pod.underlying);
 	const podOwner = parseOwnerAddress(pod.owner.id);
 
 	return (
-		<div className="bg-black border border-neutral relative overflow-hidden">
+		<div className="bg-black border border-neutral relative overflow-hidden flex flex-col">
 			{genesis ? <div className="absolute z-0 bg-yellow blur-background h-[100px] -top-[50px] left-[0px] opacity-40 right-[0px] bottom-0 blur-3xl"></div> : <></>}
 			<div className="relative z-20">
 				<header className="flex justify-between border-b border-neutral-border  p-4">
@@ -47,8 +48,8 @@ const PodCard = async ({ pod, genesis = false }: IPodCard) => {
 						</div>
 					</div>
 				</header>
-				<main className="p-4 ">
-					<div className=" min-h-[100px]">
+				<main className="p-4">
+					<div className="min-h-[100px]">
 						<div className="flex gap-1 text-gray items-center">
 							<Link href={appURL(`/pod/${pod.id}`)}>
 								<div className="text-white">{pod.name}</div>
@@ -60,8 +61,8 @@ const PodCard = async ({ pod, genesis = false }: IPodCard) => {
 						</div>
 						<Label className="mt-2">{pod.description}</Label>
 					</div>
-					<div className="flex gap-2">
-						<div className="">
+					<div className="flex gap-2 flex-wrap">
+						<div className="md:float-left block">
 							<Tooltip
 								content={
 									<div>
@@ -84,49 +85,29 @@ const PodCard = async ({ pod, genesis = false }: IPodCard) => {
 								<div className="text-white inline-block p-2 rounded-full border border-neutral-border bg-neutral-black-secondary">{isPermissionless(pod.owner.id) ? <OpenLockIcon /> : <ClosedLockIcon />}</div>
 							</Tooltip>
 						</div>
-						<div className="text-white">
+						<div className="text-white md:float-left block">
 							<div className="border py-1 px-2 bg-neutral-black-secondary border-neutral flex-1 rounded-[32px]">TVL: {formatNumber(pod.reserve, underlying.decimals)}</div>
 						</div>
 						{genesis ? (
-							<div>
+							<div className="md:float-left block">
 								<div className="uppercase text-yellow border border-yellow bg-[#FFD52E1A] rounded-[32px] py-1 px-2">Genesis pod</div>
 							</div>
 						) : (
 							<></>
 						)}
-						<div>
+						<div className="md:float-left block">
 							<div className={`${parseFloat(apr) > 0 ? "text-green border-[#43B055] bg-[#43B0551A]" : "text-gray border-neutral-border bg-neutral-black-secondary"} border  rounded-[32px] py-1 px-2`}>{apr}% APR</div>
 						</div>
 					</div>
 				</main>
-				<footer className="flex justify-between items-center border-t border-neutral-border text-gray mt-2 md:flex-col md:items-start md:gap-2  p-4">
+				<footer className="flex sm:flex-col sm:justify-start sm:items-start justify-between sm:gap-3 items-center border-t border-neutral-border text-gray mt-2  p-4">
 					<div className="flex gap-2 items-center">
 						{pod.rewards && pod.rewards.length > 0 ? (
 							<>
 								<div className="text-white uppercase">Active rewards:</div>
 								<div className="flex items-center">
-									{pod.rewards.map(async (_reward, i) => {
-										const _extendedReward = await getTokenInfo(_reward.token);
-										return (
-											<Tooltip
-												key={_reward.id}
-												content={
-													<ExternalLink link={explorerTokenURL(_extendedReward.address)}>
-														<div className="flex items-center justify-center gap-1">
-															<span>${_extendedReward.symbol}</span>
-															<span className="w-[16px]">
-																<ExternalIcon />
-															</span>
-														</div>
-													</ExternalLink>
-												}
-												direction="top"
-											>
-												<div className={`${i > 0 ? `-ml-3` : ""} flex relative items-center`} style={{ zIndex: i + 1 }}>
-													<TokenLogo size={16} logo={_extendedReward.logo} name={_extendedReward.name} />
-												</div>
-											</Tooltip>
-										);
+									{pod.rewards.map((_reward, i) => {
+										return <PodCardReward key={_reward.id} reward={_reward} index={i} />;
 									})}
 								</div>
 							</>

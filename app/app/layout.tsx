@@ -8,6 +8,8 @@ import Link from "next/link";
 import { appURL } from "@/config/enviroment";
 import RainbowWrapper from "./RainbowWrapper";
 import { ModalProvider } from "@/services/ModalProvider";
+import { PodsProvider } from "@/services/PodsProvider";
+import { TokensProvider } from "@/services/TokensProvider";
 
 interface ILayout {
 	children: ReactNode;
@@ -28,15 +30,19 @@ const Layout = ({ children }: ILayout) => {
 		<RainbowWrapper>
 			<ModalProvider>
 				<ApolloProvider client={apolloClient}>
-					<main className="relative  min-h-screen z-10 py-[80px] w-[864px] mx-auto md:w-full md:p-5 ">
-						<header className="flex items-center justify-between mb-[80px]">
-							<Link href={appURL("/")}>
-								<div className="text-[50px] -tracking-[3px] text-white font-[500]">pod.</div>
-							</Link>
-							<ConnectWallet>Connect wallet</ConnectWallet>
-						</header>
-						{children}
-					</main>
+					<TokensProvider>
+						<PodsProvider>
+							<main className="relative  min-h-screen z-10 py-[80px] max-w-[864px] mx-auto md:w-full p-5 ">
+								<header className="flex items-center justify-between mb-[80px]">
+									<Link href={appURL("/")}>
+										<div className="text-[50px] -tracking-[3px] text-white font-[500]">pod.</div>
+									</Link>
+									<ConnectWallet>Connect wallet</ConnectWallet>
+								</header>
+								{children}
+							</main>
+						</PodsProvider>
+					</TokensProvider>
 				</ApolloProvider>
 			</ModalProvider>
 		</RainbowWrapper>

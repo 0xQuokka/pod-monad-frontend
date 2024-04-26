@@ -40,7 +40,9 @@ const RewardList = ({ rewards, pod }: IRewardList) => {
 	return (
 		<div className="">
 			<header className="flex justify-between items-center sm:flex-col sm:items-start">
-				<Title32 className="text-white">REWARDS</Title32>
+				<div className="flex flex-col gap-1 max-w-[380px]">
+					<Title32 className="text-white">REWARDS</Title32>
+				</div>
 				{account && (
 					<div className="flex gap-2">
 						<div>
@@ -56,6 +58,11 @@ const RewardList = ({ rewards, pod }: IRewardList) => {
 					</div>
 				)}
 			</header>
+			<div className="mt-4">
+				<p className="text-gray">
+					<span className="text-white">These are the current rewards</span> for this particular POD. If the pod is set to be permisionless, you can add your own.
+				</p>
+			</div>
 			<div className="flex-1 mt-8 flex flex-col gap-4">
 				{rewards.map((reward: POD_REWARD_INTERFACE) => {
 					return <RewardCard key={reward.id} reward={reward} />;
