@@ -1,4 +1,3 @@
-import AvailablePods from "@/app/app/components/availablePods";
 import { getClient } from "@/lib/apolloClientRC";
 import { getPodsQuery } from "@/utils/queries";
 
@@ -26,7 +25,7 @@ export async function GET() {
 			{
 				status: 200,
 				headers: {
-					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Origin": "https://app.pod.finance",
 					"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
 				},
 			}
@@ -43,7 +42,7 @@ export async function GET() {
 		{
 			status: 200,
 			headers: {
-				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Origin": "https://app.pod.finance",
 				"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
 			},
 		}

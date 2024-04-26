@@ -28,9 +28,8 @@ const RainbowWrapper = ({ children }: any) => {
 	const wagmiConfig = getDefaultConfig({
 		appName: "POD Finance APP",
 		projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
-		chains: [baseSepolia, base],
+		chains: [base],
 		transports: {
-			[baseSepolia.id]: http(),
 			[base.id]: http(),
 		},
 		ssr: true,
