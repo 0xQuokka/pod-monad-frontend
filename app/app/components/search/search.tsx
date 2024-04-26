@@ -19,7 +19,7 @@ const renderSelected = (selected: Selected) => {
 	return (
 		<div className="flex gap-2 items-center">
 			<div className="w-[16px] flex items-center">{selected === ALL_TOKENS ? <AllTokensIcon /> : <TokenLogo logo={selected.logo} name={selected.name} />}</div>
-			<div>{selected === ALL_TOKENS ? "ALL TOKENS" : selected.name}</div>
+			<div>{selected === ALL_TOKENS ? "ALL TOKENS" : selected.symbol}</div>
 		</div>
 	);
 };

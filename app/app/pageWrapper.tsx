@@ -16,7 +16,6 @@ const PageWrapper = async () => {
 					<div>
 						<CreatePodButton />
 					</div>
-					<AvailablePods />
 				</div>
 				<div className="flex gap-2">
 					<Search />
