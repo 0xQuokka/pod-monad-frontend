@@ -63,6 +63,8 @@ export const TokensProvider = ({ children }: { children: React.ReactNode }) => {
 
 		return {
 			...token,
+			name: extendedToken.name,
+			symbol: extendedToken.symbol,
 			address: token.id,
 			logo: extendedToken.logo,
 			isWNative: extendedToken.isWNative,
