@@ -34,7 +34,7 @@ const Layout = ({ children }: ILayout) => {
 					<TokensProvider>
 						<PodsProvider>
 							<div className="absolute z-0 h-[100vh] top-0 left-0 right-0">
-								<Image src={"/background.jpeg"} alt="podline" fill quality={100} className="mix-blend-overlay object-cover" />
+								<Image src={"https://pod.finance/background.jpeg"} alt="podline" fill quality={100} className="mix-blend-overlay object-cover" />
 							</div>
 							<main className="relative  min-h-screen z-10 py-[80px] max-w-[864px] mx-auto md:w-full p-5 ">
 								<header className="flex items-center justify-between mb-[80px]">

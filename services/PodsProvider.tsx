@@ -35,7 +35,7 @@ export const PodsProvider = ({ children }: { children: React.ReactNode }) => {
 
 		if (!isEthereumAddress(underlying)) return;
 		setLoadingPods(true);
-		const res = await fetch(`/api/pods/${underlying}`, {
+		const res = await fetch(`https://pod.finance/api/pods/${underlying}`, {
 			next: {
 				revalidate: 120,
 				tags: ["pods"],
@@ -52,7 +52,7 @@ export const PodsProvider = ({ children }: { children: React.ReactNode }) => {
 	useEffect(() => {
 		const populate = async () => {
 			setLoadingPods(true);
-			const res = await fetch("/api/pods", {
+			const res = await fetch("https://pod.finance/api/pods", {
 				next: {
 					revalidate: 120,
 					tags: ["pods"],
