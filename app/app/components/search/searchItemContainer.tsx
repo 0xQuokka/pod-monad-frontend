@@ -1,3 +1,4 @@
+import TickIcon from "@/app/components/icons/tick";
 import { MouseEventHandler, ReactNode } from "react";
 
 interface ISearchItemContainer {
@@ -5,11 +6,17 @@ interface ISearchItemContainer {
 	className?: string;
 	hoverable?: boolean;
 	onClick?: MouseEventHandler<HTMLDivElement>;
+	selected?: boolean;
 }
-const SearchItemContainer = ({ children, className, hoverable = true, onClick }: ISearchItemContainer) => {
+const SearchItemContainer = ({ children, className, hoverable = true, onClick, selected = false }: ISearchItemContainer) => {
 	return (
-		<div onClick={onClick} className={`items-center px-4 py-2 bg-black transition-all ${className} ${hoverable ? "hover:bg-neutral-black-secondary cursor-pointer" : ""}`}>
-			{children}
+		<div onClick={onClick} className={`items-center px-4 py-2 ${selected ? "bg-[#101212]" : "bg-black hover:bg-neutral-black-secondary"} transition-all ${className} ${hoverable ? " cursor-pointer" : ""}`}>
+			<div className="flex gap-2 items-center">{children}</div>
+			{selected && (
+				<div className="w-[16px]">
+					<TickIcon />
+				</div>
+			)}
 		</div>
 	);
 };

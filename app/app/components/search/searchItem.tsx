@@ -8,12 +8,13 @@ interface ISearchItem {
 	label?: string;
 	isAllTokens?: boolean;
 	onClick?: MouseEventHandler<HTMLDivElement>;
+	selected?: boolean;
 }
 
-const SearchItem = ({ logo, title, label, isAllTokens = false, onClick }: ISearchItem) => {
+const SearchItem = ({ logo, title, label, isAllTokens = false, onClick, selected }: ISearchItem) => {
 	return (
-		<SearchItemContainer className="flex w-full gap-3" onClick={onClick}>
-			<div className="">
+		<SearchItemContainer className="flex w-full gap-3" onClick={onClick} selected={selected}>
+			<div className="flex">
 				{isAllTokens ? (
 					<div className="p-2 bg-neutral-black-secondary border border-neutral-border rounded-full">
 						<div className="w-[24px]">
