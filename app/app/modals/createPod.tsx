@@ -140,8 +140,6 @@ const Step3Modal = ({ setStepReady, stepBack, owner, setOwner }: IStep3) => {
 	useEffect(() => {
 		if (permissionless) {
 			setOwner(ethers.ZeroAddress);
-		} else {
-			setOwner("");
 		}
 	}, [permissionless, setOwner]);
 

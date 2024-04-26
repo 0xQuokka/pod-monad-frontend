@@ -45,6 +45,20 @@ const PodGrid = () => {
 			) : (
 				<></>
 			)}
+			{!loadingPods && genesisPods.length === 0 && nonGenesisPods.length === 0 ? (
+				<div className="items-center text-center mt-8">
+					<div className="flex flex-col gap-2 justify-center text-gray">
+						<div className="text-center items-center flex justify-center">
+							<div className="w-[24px]">
+								<WarningIcon />
+							</div>
+						</div>
+						<p className="text-gray">No pods found</p>
+					</div>
+				</div>
+			) : (
+				<></>
+			)}
 			<div className="grid grid-cols-2 md:grid-cols-1 gap-3">
 				{genesisPods ? (
 					genesisPods.map((pod: POD_INTERFACE) => {
@@ -59,20 +73,6 @@ const PodGrid = () => {
 						const underlying = getTokenInfo(pod.underlying);
 						return <PodCard pod={pod} key={pod.id} underlying={underlying} />;
 					})
-				) : (
-					<></>
-				)}
-				{genesisPods.length === 0 && nonGenesisPods.length === 0 ? (
-					<div className="items-center text-center mt-8">
-						<div className="flex flex-col gap-2 justify-center text-gray">
-							<div className="text-center items-center flex justify-center">
-								<div className="w-[24px]">
-									<WarningIcon />
-								</div>
-							</div>
-							<p className="text-gray">No pods found</p>
-						</div>
-					</div>
 				) : (
 					<></>
 				)}
