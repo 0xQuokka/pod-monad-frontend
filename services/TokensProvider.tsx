@@ -33,7 +33,8 @@ export const TokensProvider = ({ children }: { children: React.ReactNode }) => {
 
 		if (!res.ok) throw new Error("Failed to fetch token list");
 
-		return res.json();
+		const j = await res.json();
+		return j.list;
 	}
 
 	async function getTokenMapping() {
