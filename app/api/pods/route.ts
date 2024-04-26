@@ -1,45 +1,5 @@
 import { getClient } from "@/lib/apolloClientRC";
-import { gql } from "@apollo/client";
-
-export const getPodsQuery = (underlying: false | string = false) => {
-	return gql`
-		query GetPods {
-			podFactories(first: 1) {
-				availablePods
-			}
-			pods(first: 20, orderBy: reserve, orderDirection: desc, ${underlying ? `where: { underlying: "${underlying.toLowerCase()}" }` : ""}) {
-				id
-				name
-				symbol
-				reserve
-				locked
-				decimals
-				description
-				underlying {
-					id
-					name
-					symbol
-					decimals
-				}
-				decimals
-				rewards {
-					id
-					amount
-					remainingAmount
-					token {
-						id
-						name
-						symbol
-						decimals
-					}
-				}
-				owner {
-					id
-				}
-			}
-		}
-	`;
-};
+import { getPodsQuery } from "@/utils/queries";
 
 export async function GET() {
 	const query = getPodsQuery();
@@ -47,8 +7,7 @@ export async function GET() {
 		query: query,
 		context: {
 			fetchOptions: {
-				//TODO change revalidation to next: { revalidate: 60 },
-				next: { revalidate: 3600 },
+				next: { revalidate: 120 },
 			},
 		},
 	});

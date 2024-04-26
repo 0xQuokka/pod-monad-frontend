@@ -1,9 +1,8 @@
 import { getClient } from "@/lib/apolloClientRC";
-import { NextApiRequest } from "next";
 import { isEthereumAddress } from "@/utils/address";
-import { getPodsQuery } from "../route";
+import { getPodsQuery } from "@/utils/queries";
 
-export async function GET(req: NextApiRequest, { params }: { params: { underlying: string } }) {
+export async function GET(req: Request, { params }: { params: { underlying: string } }) {
 	const underlying = params.underlying;
 	if (!isEthereumAddress(underlying)) return new Response("Bad request", { status: 400 });
 
@@ -12,8 +11,7 @@ export async function GET(req: NextApiRequest, { params }: { params: { underlyin
 		query: query,
 		context: {
 			fetchOptions: {
-				//TODO change revalidation to next: { revalidate: 60 },
-				next: { revalidate: 3600 },
+				next: { revalidate: 120 },
 			},
 		},
 	});
@@ -33,4 +31,4 @@ export async function GET(req: NextApiRequest, { params }: { params: { underlyin
 	);
 }
 
-export const revalidate = 60;
+export const revalidate = 120;
