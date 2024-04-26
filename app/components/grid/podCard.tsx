@@ -14,6 +14,7 @@ import Tooltip from "../tooltip/tooltip";
 import ExternalIcon from "../icons/external";
 import { TOKEN_INTERFACE } from "@/app/app/interfaces/Token";
 import PodCardReward from "./podCard/podCardReward";
+import Egg from "./egg";
 
 interface IPodCard {
 	pod: POD_INTERFACE;
@@ -30,7 +31,7 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 		<div className="bg-black border border-neutral relative overflow-hidden flex flex-col">
 			{genesis ? <div className="absolute z-0 bg-yellow blur-background h-[100px] -top-[50px] left-[0px] opacity-40 right-[0px] bottom-0 blur-3xl"></div> : <></>}
 			<div className="relative z-20">
-				<header className="flex justify-between border-b border-neutral-border  p-4">
+				<header className="flex justify-between  p-4">
 					<div className="flex gap-2">
 						<div className="flex items-center justify-center">
 							<TokenLogo logo={underlying.logo} name={underlying.name} />
@@ -48,8 +49,14 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 						</div>
 					</div>
 				</header>
-				<main className="p-4">
-					<div className="min-h-[100px]">
+				<main className="px-4 pt-0 pb-3">
+					<div className="text-center flex items-center justify-center">
+						<div className="h-[1px] border-t border-dotted border-neutral-border w-full absolute top-[40%] z-0"></div>
+						<div className="relative z-30">
+							<Egg />
+						</div>
+					</div>
+					<div className="min-h-[100px] md:min-h-[80px] flex flex-col justify-end pb-4">
 						<div className="flex gap-1 text-gray items-center">
 							<Link href={appURL(`/pod/${pod.id}`)}>
 								<div className="text-white">{pod.name}</div>
@@ -59,10 +66,10 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 								<PaperIcon />
 							</ExternalLink>
 						</div>
-						<Label className="mt-2">{pod.description}</Label>
+						<div className="mt-2 text-gray">{pod.description}</div>
 					</div>
-					<div className="flex gap-2 flex-wrap">
-						<div className="md:float-left block">
+					<div className="flex gap-2 flex-wrap md:mt-4">
+						<div className="md:float-left">
 							<Tooltip
 								content={
 									<div>
@@ -86,7 +93,7 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 							</Tooltip>
 						</div>
 						<div className="text-white md:float-left block">
-							<div className="border py-1 px-2 bg-neutral-black-secondary border-neutral flex-1 rounded-[32px]">TVL: {formatNumber(pod.reserve, underlying.decimals)}</div>
+							<div className={`border py-1 px-2 bg-neutral-black-secondary border-neutral flex-1 rounded-[32px]`}>TVL: {formatNumber(pod.reserve, underlying.decimals)}</div>
 						</div>
 						{genesis ? (
 							<div className="md:float-left block">
@@ -100,11 +107,11 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 						</div>
 					</div>
 				</main>
-				<footer className="flex sm:flex-col sm:justify-start sm:items-start justify-between sm:gap-3 items-center border-t border-neutral-border text-gray mt-2  p-4">
+				<footer className="flex justify-between sm:gap-3 items-center border-t border-neutral-border text-gray  p-4">
 					<div className="flex gap-2 items-center">
 						{pod.rewards && pod.rewards.length > 0 ? (
 							<>
-								<div className="text-white uppercase">Active rewards:</div>
+								<div className="text-white uppercase">rewards:</div>
 								<div className="flex items-center">
 									{pod.rewards.map((_reward, i) => {
 										return <PodCardReward key={_reward.id} reward={_reward} index={i} />;
@@ -112,7 +119,7 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 								</div>
 							</>
 						) : (
-							<div className="text-gray uppercase pt-1">No active rewards</div>
+							<div className="text-red uppercase pt-1">No rewards</div>
 						)}
 					</div>
 					<div className="w-full flex-1 text-right flex justify-end">

@@ -14,6 +14,7 @@ const config: Config = {
 				"neutral-black-secondary": "#202224",
 				yellow: "#FFD52E",
 				green: "#43B055",
+				red: "#D94A4A",
 			},
 			screens: {
 				md: {

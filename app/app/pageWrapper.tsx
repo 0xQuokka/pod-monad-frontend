@@ -22,7 +22,7 @@ const PageWrapper = async () => {
 					<Search />
 				</div>
 			</div>
-			<div className="flex flex-col gap-2 mt-4">
+			<div className="flex flex-col gap-2 mt-12">
 				<PodGrid />
 			</div>
 		</>
