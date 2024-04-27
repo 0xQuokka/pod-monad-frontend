@@ -8,7 +8,7 @@ interface ITokenLogo {
 
 const TokenLogo = ({ logo, name, size = 24 }: ITokenLogo) => {
 	const defaultLogo = !logo;
-	const logoURL = logo ? `${process.env.NEXT_PUBLIC_CDN_ASSET_URI as string}${logo}` : "/default-token-logo.png";
+	const logoURL = logo ? `${process.env.NEXT_PUBLIC_CDN_ASSET_URI as string}${logo}` : "https://pod.finance/default-token-logo.png";
 
 	// offset padding (8px) + border left and right
 	const _size = defaultLogo ? size : size + 18;
