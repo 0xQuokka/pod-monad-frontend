@@ -12,6 +12,7 @@ import { formatAmount, formatNumber, parseAmount } from "@/utils/utils";
 import { ethers } from "ethers";
 import useDebounce from "@/utils/useDebounce";
 import Button from "@/app/components/button";
+import { OVERRIDE_POD_DATA } from "@/config/genesis";
 
 interface IDepositBox {
 	pod: POD_INTERFACE;
@@ -211,7 +212,7 @@ const DepositBox = ({ pod }: IDepositBox) => {
 			</Card>
 			<Card className="mt-2">
 				<div className="flex justify-between items-center text-gray">
-					<div className="uppercase">{pod.name} balance</div>
+					<div className="uppercase">{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].name : pod.name} balance</div>
 					<div className="text-white">
 						<span>{podBalance ? formatNumber(BigInt(podBalance.toString()), pod.decimals) : 0}</span> <span>{pod.symbol}</span>
 					</div>

@@ -6,6 +6,7 @@ import { TESTNET_MINTABLE_UNDERLYING, explorerTokenURL } from "@/config/envirome
 import { formatNumber } from "@/utils/utils";
 import MintableButton from "./mintableButton";
 import { parseOwnerAddress } from "@/utils/address";
+import { OVERRIDE_POD_DATA } from "@/config/genesis";
 
 interface Sidebar {
 	pod: POD_INTERFACE;
@@ -24,8 +25,8 @@ const Sidebar = ({ pod }: Sidebar) => {
 	return (
 		<div className="w-[300px] md:w-full flex flex-col gap-6">
 			<div>
-				<Title32 className="text-white">{pod.name}</Title32>
-				<Label>{pod.description}</Label>
+				<Title32 className="text-white">{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].name : pod.name}</Title32>
+				<Label>{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].description : pod.description}</Label>
 			</div>
 			<div className="flex flex-col gap-2">
 				<Card className="p-0" noPadding={true}>
@@ -42,7 +43,6 @@ const Sidebar = ({ pod }: Sidebar) => {
 					</div>
 				</Card>
 				<Card>{LIST_KEY_VALUE("LOCKED", `${formatNumber(pod.locked, pod.decimals)} ${pod.symbol}`)}</Card>
-				{pod.underlying.id.toLowerCase() == TESTNET_MINTABLE_UNDERLYING.toLowerCase() ? <MintableButton token={pod.underlying.id} /> : <></>}
 				<a href={explorerTokenURL(pod.id)} rel="noreferrer" target="_blank" className="text-white underline cursor-pointer mt-4">
 					View POD in explorer
 				</a>

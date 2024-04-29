@@ -9,12 +9,13 @@ import ExternalLink from "../externalLink";
 import { isPermissionless, parseOwnerAddress } from "@/utils/address";
 import OpenLockIcon from "../icons/openLock";
 import ClosedLockIcon from "../icons/closedLock";
-import Label from "../text/Label";
 import Tooltip from "../tooltip/tooltip";
 import ExternalIcon from "../icons/external";
 import { TOKEN_INTERFACE } from "@/app/app/interfaces/Token";
 import PodCardReward from "./podCard/podCardReward";
 import Egg from "./egg";
+import FungiEgg from "./fungiEgg";
+import { CUSTOM_POD_IMAGE, OVERRIDE_POD_DATA } from "@/config/genesis";
 
 interface IPodCard {
 	pod: POD_INTERFACE;
@@ -52,21 +53,19 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 				<main className="px-4 pt-0 pb-3">
 					<div className="text-center flex items-center justify-center">
 						<div className="h-[1px] border-t border-dotted border-neutral-border w-full absolute top-[40%] z-0"></div>
-						<div className="relative z-30">
-							<Egg />
-						</div>
+						<div className="relative z-30">{CUSTOM_POD_IMAGE[pod.id] ? <FungiEgg /> : <Egg />}</div>
 					</div>
 					<div className="min-h-[100px] md:min-h-[80px] flex flex-col justify-end pb-4">
 						<div className="flex gap-1 text-gray items-center">
 							<Link href={appURL(`/pod/${pod.id}`)}>
-								<div className="text-white">{pod.name}</div>
+								<div className="text-white">{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].name : pod.name}</div>
 							</Link>
 							<div>(${pod.symbol})</div>
 							<ExternalLink link={explorerURL(`/address/${pod.id}`)} className="hover:text-white">
 								<PaperIcon />
 							</ExternalLink>
 						</div>
-						<div className="mt-2 text-gray">{pod.description}</div>
+						<div className="mt-2 text-gray">{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].description : pod.description}</div>
 					</div>
 					<div className="flex gap-2 flex-wrap md:mt-4">
 						<div className="md:float-left">
