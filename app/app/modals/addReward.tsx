@@ -276,7 +276,7 @@ const Step3Modal = ({ name, reward, amount, startDate, endDate, decimals, pod, s
 			</main>
 			<footer className="flex items-end mt-8 justify-end gap-2">
 				<Button onClick={() => stepBack()}>BACK</Button>
-				{allowance !== undefined && allowance !== null && parseFloat(formatAmount(allowance.toString(), pod.underlying.decimals)) < amount ? (
+				{allowance !== undefined && allowance !== null && parseFloat(formatAmount(allowance.toString(), decimals)) < amount ? (
 					<Button onClick={performApprove} className="text-center" loading={isPendingApprove}>
 						Approve
 					</Button>
