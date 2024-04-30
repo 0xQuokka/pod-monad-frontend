@@ -65,7 +65,7 @@ const RewardList = ({ rewards, pod }: IRewardList) => {
 			</div>
 			<div className="flex-1 mt-8 flex flex-col gap-4">
 				{rewards.map((reward: POD_REWARD_INTERFACE) => {
-					return <RewardCard key={reward.id} reward={reward} />;
+					return <RewardCard key={reward.id} reward={reward} pod={{ id: pod.id, decimals: pod.decimals }} />;
 				})}
 			</div>
 		</div>

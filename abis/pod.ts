@@ -335,6 +335,19 @@ const POD_ABI = [
 			{
 				indexed: true,
 				internalType: "address",
+				name: "token",
+				type: "address",
+			},
+		],
+		name: "DeleteReward",
+		type: "event",
+	},
+	{
+		anonymous: false,
+		inputs: [
+			{
+				indexed: true,
+				internalType: "address",
 				name: "sender",
 				type: "address",
 			},
@@ -408,6 +421,37 @@ const POD_ABI = [
 			},
 		],
 		name: "Lock",
+		type: "event",
+	},
+	{
+		anonymous: false,
+		inputs: [
+			{
+				indexed: true,
+				internalType: "address",
+				name: "token",
+				type: "address",
+			},
+			{
+				indexed: false,
+				internalType: "uint256",
+				name: "amount",
+				type: "uint256",
+			},
+			{
+				indexed: false,
+				internalType: "uint256",
+				name: "startDate",
+				type: "uint256",
+			},
+			{
+				indexed: false,
+				internalType: "uint256",
+				name: "endDate",
+				type: "uint256",
+			},
+		],
+		name: "ModifyReward",
 		type: "event",
 	},
 	{
@@ -736,7 +780,7 @@ const POD_ABI = [
 		name: "factory",
 		outputs: [
 			{
-				internalType: "address",
+				internalType: "contract IPodFactory",
 				name: "",
 				type: "address",
 			},
@@ -755,25 +799,6 @@ const POD_ABI = [
 		name: "harvest",
 		outputs: [],
 		stateMutability: "nonpayable",
-		type: "function",
-	},
-	{
-		inputs: [
-			{
-				internalType: "address",
-				name: "",
-				type: "address",
-			},
-		],
-		name: "lastLocked",
-		outputs: [
-			{
-				internalType: "uint256",
-				name: "",
-				type: "uint256",
-			},
-		],
-		stateMutability: "view",
 		type: "function",
 	},
 	{
@@ -881,6 +906,41 @@ const POD_ABI = [
 			},
 		],
 		stateMutability: "view",
+		type: "function",
+	},
+	{
+		inputs: [
+			{
+				internalType: "address",
+				name: "token",
+				type: "address",
+			},
+			{
+				internalType: "uint256",
+				name: "amount",
+				type: "uint256",
+			},
+			{
+				components: [
+					{
+						internalType: "uint256",
+						name: "startTime",
+						type: "uint256",
+					},
+					{
+						internalType: "uint256",
+						name: "endTime",
+						type: "uint256",
+					},
+				],
+				internalType: "struct Pod.Settings",
+				name: "_settings",
+				type: "tuple",
+			},
+		],
+		name: "modifyRewardToken",
+		outputs: [],
+		stateMutability: "nonpayable",
 		type: "function",
 	},
 	{
@@ -993,6 +1053,25 @@ const POD_ABI = [
 			},
 		],
 		stateMutability: "nonpayable",
+		type: "function",
+	},
+	{
+		inputs: [
+			{
+				internalType: "bytes32",
+				name: "_rewardID",
+				type: "bytes32",
+			},
+		],
+		name: "rewardDebt",
+		outputs: [
+			{
+				internalType: "uint256",
+				name: "_rewardDebt",
+				type: "uint256",
+			},
+		],
+		stateMutability: "view",
 		type: "function",
 	},
 	{

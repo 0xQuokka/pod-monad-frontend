@@ -16,6 +16,18 @@ export function formatNumber(bignumber: BigInt, decimals: Number): any {
 	}
 }
 
+export function formatSmallNumber(n: number) {
+	if (n < 1000) {
+		return n;
+	} else if (n < 1000000) {
+		const thousands = (n / 1000).toFixed(1);
+		return `${thousands}k`;
+	} else {
+		const millions = (n / 1000000).toFixed(1);
+		return `${millions}M`;
+	}
+}
+
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 export function parseRewardDate(startDate: number, endDate: number): [string, string] {

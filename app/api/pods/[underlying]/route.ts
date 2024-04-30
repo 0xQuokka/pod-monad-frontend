@@ -1,3 +1,4 @@
+import { ALLOW_ORIGIN } from "@/config/enviroment";
 import { getClient } from "@/lib/apolloClientRC";
 import { isEthereumAddress } from "@/utils/address";
 import { getPodsQuery } from "@/utils/queries";
@@ -28,7 +29,7 @@ export async function GET(req: Request, { params }: { params: { underlying: stri
 			{
 				status: 200,
 				headers: {
-					"Access-Control-Allow-Origin": "https://app.pod.finance",
+					"Access-Control-Allow-Origin": ALLOW_ORIGIN,
 					"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
 				},
 			}
@@ -45,7 +46,7 @@ export async function GET(req: Request, { params }: { params: { underlying: stri
 		{
 			status: 200,
 			headers: {
-				"Access-Control-Allow-Origin": "https://app.pod.finance",
+				"Access-Control-Allow-Origin": ALLOW_ORIGIN,
 				"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
 			},
 		}

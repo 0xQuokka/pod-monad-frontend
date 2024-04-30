@@ -1,3 +1,4 @@
+import { ALLOW_ORIGIN } from "@/config/enviroment";
 import { getClient } from "@/lib/apolloClientRC";
 import { getPodsQuery } from "@/utils/queries";
 
@@ -25,7 +26,7 @@ export async function GET() {
 			{
 				status: 200,
 				headers: {
-					"Access-Control-Allow-Origin": "https://app.pod.finance",
+					"Access-Control-Allow-Origin": ALLOW_ORIGIN,
 					"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
 				},
 			}
@@ -34,15 +35,31 @@ export async function GET() {
 
 	const { data } = res;
 
+	let tvl = 0;
+	try {
+		const tvlQuery = await fetch(process.env.DEFILLAMA_API_URL as string, {
+			next: { revalidate: 90 },
+		});
+
+		const tvlJSON = await tvlQuery.json();
+		const currentTVL = tvlJSON.currentChainTvls;
+		if (currentTVL) {
+			tvl = currentTVL["Base"] + currentTVL["Base-staking"] + currentTVL["Base-pool2"];
+		}
+	} catch (e) {
+		console.log("Error fetching DefiLlama TVL", e);
+	}
+
 	return new Response(
 		JSON.stringify({
 			pods: data.pods,
 			podFactories: data.podFactories,
+			tvl,
 		}),
 		{
 			status: 200,
 			headers: {
-				"Access-Control-Allow-Origin": "https://app.pod.finance",
+				"Access-Control-Allow-Origin": ALLOW_ORIGIN,
 				"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
 			},
 		}

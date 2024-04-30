@@ -39,23 +39,27 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 						</div>
 						<div className="text-gray">
 							<div className="hover:text-white">
-								<ExternalLink link={explorerURL(`/token/${underlying.address}`)} className="cursor-pointer flex gap-2 items-center">
+								<Link href={appURL(`/pod/${pod.id}`)} className="cursor-pointer flex gap-2 items-center">
 									<div className="text-white">{underlying.name}</div>
 									<div>
 										<PaperIcon />
 									</div>
-								</ExternalLink>
+								</Link>
 							</div>
-							<div className="uppercase text-[14px]">Underlying asset</div>
+							<ExternalLink link={explorerURL(`/token/${pod.underlying.id}`)} className="hover:text-white hover:opacity-70 transition-all">
+								<div className="uppercase text-[14px]">Underlying asset</div>
+							</ExternalLink>
 						</div>
 					</div>
 				</header>
 				<main className="px-4 pt-0 pb-3">
-					<div className="text-center flex items-center justify-center">
-						<div className="h-[1px] border-t border-dotted border-neutral-border w-full absolute top-[40%] z-0"></div>
-						<div className="relative z-30">{CUSTOM_POD_IMAGE[pod.id] ? <FungiEgg /> : <Egg />}</div>
-					</div>
-					<div className="min-h-[100px] md:min-h-[80px] flex flex-col justify-end pb-4">
+					<Link href={appURL(`/pod/${pod.id}`)} className="cursor-pointer">
+						<div className="text-center flex items-center justify-center">
+							<div className="h-[1px] border-t border-dotted border-neutral-border w-full absolute top-[40%] z-0"></div>
+							<div className="relative z-30">{CUSTOM_POD_IMAGE[pod.id] ? <FungiEgg /> : <Egg />}</div>
+						</div>
+					</Link>
+					<div className="min-h-[191px] md:min-h-[80px] flex flex-col justify-end pb-4">
 						<div className="flex gap-1 text-gray items-center">
 							<Link href={appURL(`/pod/${pod.id}`)}>
 								<div className="text-white">{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].name : pod.name}</div>
@@ -66,43 +70,43 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 							</ExternalLink>
 						</div>
 						<div className="mt-2 text-gray">{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].description : pod.description}</div>
-					</div>
-					<div className="flex gap-2 flex-wrap md:mt-4">
-						<div className="md:float-left">
-							<Tooltip
-								content={
-									<div>
-										{isPermissionless(pod.owner.id) ? (
-											<div>{podOwner}</div>
-										) : (
-											<ExternalLink link={explorerURL(`/address/${pod.owner.id}`)}>
-												<div className="min-w-[180px] text-center justify-center flex gap-1">
-													<span>Owner: {podOwner}</span>
-													<span className="w-[18px]">
-														<ExternalIcon />
-													</span>
-												</div>
-											</ExternalLink>
-										)}
-									</div>
-								}
-								direction="top"
-							>
-								<div className="text-white inline-block p-2 rounded-full border border-neutral-border bg-neutral-black-secondary">{isPermissionless(pod.owner.id) ? <OpenLockIcon /> : <ClosedLockIcon />}</div>
-							</Tooltip>
-						</div>
-						<div className="text-white md:float-left block">
-							<div className={`border py-1 px-2 bg-neutral-black-secondary border-neutral flex-1 rounded-[32px]`}>TVL: {formatNumber(pod.reserve, underlying.decimals)}</div>
-						</div>
-						{genesis ? (
-							<div className="md:float-left block">
-								<div className="uppercase text-yellow border border-yellow bg-[#FFD52E1A] rounded-[32px] py-1 px-2">Genesis pod</div>
+						<div className="flex gap-2 flex-wrap mt-4">
+							<div className="md:float-left">
+								<Tooltip
+									content={
+										<div>
+											{isPermissionless(pod.owner.id) ? (
+												<div>{podOwner}</div>
+											) : (
+												<ExternalLink link={explorerURL(`/address/${pod.owner.id}`)}>
+													<div className="min-w-[180px] text-center justify-center flex gap-1">
+														<span>Owner: {podOwner}</span>
+														<span className="w-[18px]">
+															<ExternalIcon />
+														</span>
+													</div>
+												</ExternalLink>
+											)}
+										</div>
+									}
+									direction="top"
+								>
+									<div className="text-white inline-block p-2 rounded-full border border-neutral-border bg-neutral-black-secondary">{isPermissionless(pod.owner.id) ? <OpenLockIcon /> : <ClosedLockIcon />}</div>
+								</Tooltip>
 							</div>
-						) : (
-							<></>
-						)}
-						<div className="md:float-left block">
-							<div className={`${parseFloat(apr) > 0 ? "text-green border-[#43B055] bg-[#43B0551A]" : "text-gray border-neutral-border bg-neutral-black-secondary"} border  rounded-[32px] py-1 px-2`}>{apr}% APR</div>
+							<div className="text-white md:float-left block">
+								<div className={`border py-1 px-2 bg-neutral-black-secondary border-neutral flex-1 rounded-[32px]`}>TVL: {formatNumber(pod.reserve, underlying.decimals)}</div>
+							</div>
+							{genesis ? (
+								<div className="md:float-left block">
+									<div className="uppercase text-yellow border border-yellow bg-[#FFD52E1A] rounded-[32px] py-1 px-2">Genesis pod</div>
+								</div>
+							) : (
+								<></>
+							)}
+							<div className="md:float-left block">
+								<div className={`${apr > 0 ? "text-green border-[#43B055] bg-[#43B0551A]" : "text-gray border-neutral-border bg-neutral-black-secondary"} border  rounded-[32px] py-1 px-2`}>{apr.toFixed(2)}% APR</div>
+							</div>
 						</div>
 					</div>
 				</main>

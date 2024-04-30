@@ -56,7 +56,7 @@ const FungiEgg = () => {
 			</g>
 			<defs>
 				<filter id="filter0_diii_883_50268" x="0.372974" y="39.0997" width="317.679" height="381.912" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="2.3815" />
 					<feGaussianBlur stdDeviation="23.815" />
@@ -84,7 +84,7 @@ const FungiEgg = () => {
 					<feBlend mode="normal" in2="effect3_innerShadow_883_50268" result="effect4_innerShadow_883_50268" />
 				</filter>
 				<filter id="filter1_diii_883_50268" x="10.1601" y="0.751542" width="297.564" height="235.802" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="2.3815" />
 					<feGaussianBlur stdDeviation="23.815" />
@@ -112,7 +112,7 @@ const FungiEgg = () => {
 					<feBlend mode="normal" in2="effect3_innerShadow_883_50268" result="effect4_innerShadow_883_50268" />
 				</filter>
 				<filter id="filter2_di_883_50268" x="118.756" y="48.0601" width="71.3039" height="55.7509" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="1.9174" />
 					<feGaussianBlur stdDeviation="4.79351" />
@@ -128,7 +128,7 @@ const FungiEgg = () => {
 					<feBlend mode="normal" in2="shape" result="effect2_innerShadow_883_50268" />
 				</filter>
 				<filter id="filter3_di_883_50268" x="80.1249" y="61.9268" width="43.3791" height="40.9812" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="1.9174" />
 					<feGaussianBlur stdDeviation="4.79351" />
@@ -144,7 +144,7 @@ const FungiEgg = () => {
 					<feBlend mode="normal" in2="shape" result="effect2_innerShadow_883_50268" />
 				</filter>
 				<filter id="filter4_di_883_50268" x="63.2382" y="96.1773" width="62.7971" height="69.5039" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="1.9174" />
 					<feGaussianBlur stdDeviation="4.79351" />
@@ -160,7 +160,7 @@ const FungiEgg = () => {
 					<feBlend mode="normal" in2="shape" result="effect2_innerShadow_883_50268" />
 				</filter>
 				<filter id="filter5_di_883_50268" x="131.705" y="106.148" width="75.9231" height="74.9287" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="1.9174" />
 					<feGaussianBlur stdDeviation="4.79351" />
@@ -176,7 +176,7 @@ const FungiEgg = () => {
 					<feBlend mode="normal" in2="shape" result="effect2_innerShadow_883_50268" />
 				</filter>
 				<filter id="filter6_di_883_50268" x="180.446" y="67.9315" width="63.3459" height="62.737" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="1.9174" />
 					<feGaussianBlur stdDeviation="4.79351" />
@@ -192,7 +192,7 @@ const FungiEgg = () => {
 					<feBlend mode="normal" in2="shape" result="effect2_innerShadow_883_50268" />
 				</filter>
 				<filter id="filter7_di_883_50268" x="213.746" y="124.542" width="37.7844" height="39.894" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="1.9174" />
 					<feGaussianBlur stdDeviation="4.79351" />

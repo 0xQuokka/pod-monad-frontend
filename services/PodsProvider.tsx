@@ -12,6 +12,7 @@ export interface IPodsContext {
 		| {};
 	searchPods: Function;
 	loadingPods: boolean;
+	TVL: number;
 }
 
 export const PodsContext = createContext<IPodsContext>({
@@ -19,6 +20,7 @@ export const PodsContext = createContext<IPodsContext>({
 	podFactory: {},
 	searchPods: () => {},
 	loadingPods: false,
+	TVL: 0,
 });
 
 export const PodsProvider = ({ children }: { children: React.ReactNode }) => {
@@ -26,6 +28,7 @@ export const PodsProvider = ({ children }: { children: React.ReactNode }) => {
 	const [pods, setPods] = useState<POD_INTERFACE[]>([]);
 	const [podFactory, setPodFactory] = useState<{ availablePods: number } | {}>({});
 	const [loadingPods, setLoadingPods] = useState<boolean>(false);
+	const [TVL, setTVL] = useState<number>(0);
 
 	const searchPods = async (underlying: string | false) => {
 		if (!underlying) {
@@ -35,7 +38,7 @@ export const PodsProvider = ({ children }: { children: React.ReactNode }) => {
 
 		if (!isEthereumAddress(underlying)) return;
 		setLoadingPods(true);
-		const res = await fetch(`https://pod.finance/api/pods/${underlying}`, {
+		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pods/${underlying}`, {
 			next: {
 				revalidate: 120,
 				tags: ["pods"],
@@ -52,7 +55,7 @@ export const PodsProvider = ({ children }: { children: React.ReactNode }) => {
 	useEffect(() => {
 		const populate = async () => {
 			setLoadingPods(true);
-			const res = await fetch("https://pod.finance/api/pods", {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pods`, {
 				next: {
 					revalidate: 120,
 					tags: ["pods"],
@@ -67,6 +70,9 @@ export const PodsProvider = ({ children }: { children: React.ReactNode }) => {
 			if (data.podFactories && data.podFactories[0]) {
 				setPodFactory(data.podFactories[0]);
 			}
+			if (data.tvl) {
+				setTVL(data.tvl);
+			}
 			setLoadingPods(false);
 		};
 		populate();
@@ -79,6 +85,7 @@ export const PodsProvider = ({ children }: { children: React.ReactNode }) => {
 				podFactory,
 				searchPods,
 				loadingPods,
+				TVL,
 			}}
 		>
 			{children}
