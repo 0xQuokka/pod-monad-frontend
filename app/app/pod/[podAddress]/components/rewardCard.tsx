@@ -54,7 +54,7 @@ const RewardCard = ({ reward, pod }: IRewardCard) => {
 	});
 
 	useEffect(() => {
-		if (blockchainReward && sharesLocked && userRewardDebt) {
+		if (blockchainReward && sharesLocked && userRewardDebt != undefined) {
 			const _pending = (BigInt(sharesLocked.toString()) * BigInt((blockchainReward as any)[2].toString())) / BigInt(10 ** (pod.decimals as number)) - BigInt(userRewardDebt.toString());
 			const parsedValue = parseFloat(parseFloat(ethers.formatUnits(_pending, parseInt(reward.token.decimals.toString()))).toPrecision(2));
 			setPendingHarvest(parsedValue);
