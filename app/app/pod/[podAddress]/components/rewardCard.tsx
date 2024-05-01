@@ -4,7 +4,7 @@ import Card from "@/app/components/cards/Card";
 import { formatNumber, formatSmallNumber, parseRewardDate } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import RewardCardToken from "./rewardCardToken";
-import { useAccount, useReadContract, useReadContracts } from "wagmi";
+import { useAccount, useReadContract } from "wagmi";
 import POD_ABI from "@/abis/pod";
 import { ethers } from "ethers";
 import AllTokensIcon from "@/app/components/icons/allTokens";
