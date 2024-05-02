@@ -130,8 +130,10 @@ const DepositBox = ({ pod }: IDepositBox) => {
 	const performAction = () => {
 		if (isPendingAction || isPendingApprove) return;
 
+		const _parsedActionAmount = action === "deposit" && BigInt((underlyingBalance as any).toString()) < BigInt(actionAmount) ? underlyingBalance : actionAmount;
+
 		const actionArgs = {
-			deposit: [actionAmount, account],
+			deposit: [_parsedActionAmount, account],
 			withdraw: [actionAmount, account, account],
 		};
 
