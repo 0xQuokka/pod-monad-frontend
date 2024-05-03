@@ -17,6 +17,7 @@ import Egg from "./egg";
 import FungiEgg from "./fungiEgg";
 import { CUSTOM_POD_IMAGE, OVERRIDE_POD_DATA } from "@/config/genesis";
 import WarpieLp from "./warpieLp";
+import PodCardTVL from "./podCard/podCardTVL";
 
 interface IPodCard {
 	pod: POD_INTERFACE;
@@ -97,9 +98,6 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 									<div className="text-white inline-block p-2 rounded-full border border-neutral-border bg-neutral-black-secondary">{isPermissionless(pod.owner.id) ? <OpenLockIcon /> : <ClosedLockIcon />}</div>
 								</Tooltip>
 							</div>
-							<div className="text-white md:float-left block">
-								<div className={`border py-1 px-2 bg-neutral-black-secondary border-neutral flex-1 rounded-[32px]`}>TVL: {formatNumber(pod.reserve, underlying.decimals)}</div>
-							</div>
 							{genesis ? (
 								<div className="md:float-left block">
 									<div className="uppercase text-yellow border border-yellow bg-[#FFD52E1A] rounded-[32px] py-1 px-2">Genesis pod</div>
@@ -107,9 +105,7 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 							) : (
 								<></>
 							)}
-							<div className="md:float-left block">
-								<div className={`${apr > 0 ? "text-green border-[#43B055] bg-[#43B0551A]" : "text-gray border-neutral-border bg-neutral-black-secondary"} border  rounded-[32px] py-1 px-2`}>{apr.toFixed(2)}% APR</div>
-							</div>
+							<PodCardTVL pod={{ id: pod.id }} />
 						</div>
 					</div>
 				</main>

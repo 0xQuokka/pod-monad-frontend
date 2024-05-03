@@ -202,7 +202,7 @@ const Step4Modal = ({ stepBack, name, symbol, description, owner, underlying, se
 	}, [error]);
 
 	const createPod = () => {
-		if (isPendignPod) return;
+		if (isPendignPod || statusApprove == "success") return;
 
 		writePod(
 			{

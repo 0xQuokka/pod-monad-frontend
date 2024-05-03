@@ -52,7 +52,7 @@ const WarpieLp = () => {
 			/>
 			<defs>
 				<filter id="filter0_diii_967_63890" x="8.42929" y="53.3827" width="265.706" height="321.044" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="1.87745" />
 					<feGaussianBlur stdDeviation="18.7745" />
@@ -80,7 +80,7 @@ const WarpieLp = () => {
 					<feBlend mode="normal" in2="effect3_innerShadow_967_63890" result="effect4_innerShadow_967_63890" />
 				</filter>
 				<filter id="filter1_ddiiiii_967_63890" x="28.7708" y="0.087749" width="279.72" height="174.837" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="3.07432" />
 					<feGaussianBlur stdDeviation="3.07432" />
@@ -126,7 +126,7 @@ const WarpieLp = () => {
 					<feBlend mode="normal" in2="effect6_innerShadow_967_63890" result="effect7_innerShadow_967_63890" />
 				</filter>
 				<filter id="filter2_dii_967_63890" x="0.422155" y="115.765" width="288.618" height="90.4106" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
 					<feOffset dy="3.07432" />
 					<feGaussianBlur stdDeviation="3.07432" />

@@ -27,6 +27,11 @@ type DEBANK_RESPONSE = {
 	raw_amount_hex_str: string;
 };
 
+const USDollar = new Intl.NumberFormat("en-US", {
+	style: "currency",
+	currency: "USD",
+});
+
 export async function GET(req: Request, { params }: { params: { podId: string } }) {
 	const podId = params.podId;
 	if (!isEthereumAddress(podId)) return new Response("Bad request", { status: 400 });
@@ -48,6 +53,21 @@ export async function GET(req: Request, { params }: { params: { podId: string } 
 				},
 			},
 		});
+
+		const reserveAmountDeposited = parseFloat(ethers.formatUnits(pod.reserve, parseInt(pod.underlying.decimals.toString())));
+		if (reserveAmountDeposited == 0 || pod.reserve.toString() == "0") {
+			return new Response(
+				JSON.stringify({
+					apr: 0,
+					tvl: 0,
+				}),
+				{
+					status: 200,
+					headers,
+				}
+			); // Generic APR calculation
+		}
+
 		const debankData = await fetch(`${process.env.DEBANK_API_URL}/user/token_list?chain_id=base&id=${podId}`, {
 			method: "GET",
 			headers: {
@@ -71,6 +91,7 @@ export async function GET(req: Request, { params }: { params: { podId: string } 
 			return new Response(
 				JSON.stringify({
 					apr: calculateAPR(pod),
+					tvl: reserveAmountDeposited,
 				}),
 				{
 					status: 200,
@@ -78,11 +99,12 @@ export async function GET(req: Request, { params }: { params: { podId: string } 
 				}
 			); // Generic APR calculation
 		}
-		const dollarsDeposited = underlying.price * parseFloat(ethers.formatUnits(pod.reserve, parseInt(pod.underlying.decimals.toString())));
+		const dollarsDeposited = underlying.price * reserveAmountDeposited;
 		if (dollarsDeposited == 0) {
 			return new Response(
 				JSON.stringify({
 					apr: calculateAPR(pod),
+					tvl: reserveAmountDeposited,
 				}),
 				{
 					status: 200,
@@ -100,6 +122,7 @@ export async function GET(req: Request, { params }: { params: { podId: string } 
 		return new Response(
 			JSON.stringify({
 				apr: (dollarsInRewards * 100) / dollarsDeposited,
+				tvl: USDollar.format(dollarsDeposited),
 			}),
 			{
 				status: 200,
@@ -115,4 +138,4 @@ export async function GET(req: Request, { params }: { params: { podId: string } 
 	}
 }
 
-export const revalidate = 720;
+export const revalidate = 360;
