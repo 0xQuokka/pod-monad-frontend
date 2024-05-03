@@ -16,6 +16,7 @@ import PodCardReward from "./podCard/podCardReward";
 import Egg from "./egg";
 import FungiEgg from "./fungiEgg";
 import { CUSTOM_POD_IMAGE, OVERRIDE_POD_DATA } from "@/config/genesis";
+import WarpieLp from "./warpieLp";
 
 interface IPodCard {
 	pod: POD_INTERFACE;
@@ -56,7 +57,9 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 					<Link href={appURL(`/pod/${pod.id}`)} className="cursor-pointer">
 						<div className="text-center flex items-center justify-center">
 							<div className="h-[1px] border-t border-dotted border-neutral-border w-full absolute top-[40%] z-0"></div>
-							<div className="relative z-30">{CUSTOM_POD_IMAGE[pod.id] ? <FungiEgg /> : <Egg />}</div>
+							<div className="relative z-30">
+								{pod.id.toLowerCase() === "0xca4aed99a2c62cab5b4b6269c02fdb25dc4bd987" ? <FungiEgg /> : pod.id.toLowerCase() === "0xfb8e5ff79e839b7351f85ee32c772885a7c1872e" ? <WarpieLp /> : <Egg />}
+							</div>
 						</div>
 					</Link>
 					<div className="min-h-[191px] md:min-h-[80px] flex flex-col justify-end pb-4">
