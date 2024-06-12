@@ -8,6 +8,7 @@ export const GENESIS_PODS: Record<string, boolean> = {
 	"0xfb8e5ff79e839b7351f85ee32c772885a7c1872e": true,
 	"0x710a8b92412f2644c7e4f48f6dfca4a5fcbb249a": true,
 	"0x29382976cad99304347661303bb5e7852d851a38": true,
+	"0x3bf11e1357d80702e468296231a8c1912cb20f0e": true,
 };
 
 export const OVERRIDE_POD_DATA: Record<string, Record<string, string>> = {

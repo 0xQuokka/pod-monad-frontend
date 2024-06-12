@@ -77,7 +77,9 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 								  "0xfb8e5ff79e839b7351f85ee32c772885a7c1872e" ? (
 									<WarpieLp />
 								) : pod.id.toLowerCase() ===
-								  "0x29382976cad99304347661303bb5e7852d851a38" ? (
+										"0x29382976cad99304347661303bb5e7852d851a38" ||
+								  pod.id.toLowerCase() ===
+										"0x3bf11e1357d80702e468296231a8c1912cb20f0e" ? (
 									<ChokeEgg />
 								) : (
 									<Egg />
