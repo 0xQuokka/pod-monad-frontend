@@ -18,6 +18,7 @@ import FungiEgg from "./fungiEgg";
 import { CUSTOM_POD_IMAGE, OVERRIDE_POD_DATA } from "@/config/genesis";
 import WarpieLp from "./warpieLp";
 import PodCardTVL from "./podCard/podCardTVL";
+import ChokeEgg from "./chokeEgg";
 
 interface IPodCard {
 	pod: POD_INTERFACE;
@@ -32,7 +33,11 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 
 	return (
 		<div className="bg-black border border-neutral relative overflow-hidden flex flex-col">
-			{genesis ? <div className="absolute z-0 bg-yellow blur-background h-[100px] -top-[50px] left-[0px] opacity-40 right-[0px] bottom-0 blur-3xl"></div> : <></>}
+			{genesis ? (
+				<div className="absolute z-0 bg-yellow blur-background h-[100px] -top-[50px] left-[0px] opacity-40 right-[0px] bottom-0 blur-3xl"></div>
+			) : (
+				<></>
+			)}
 			<div className="relative z-20">
 				<header className="flex justify-between  p-4">
 					<div className="flex gap-2">
@@ -41,14 +46,20 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 						</div>
 						<div className="text-gray">
 							<div className="hover:text-white">
-								<Link href={appURL(`/pod/${pod.id}`)} className="cursor-pointer flex gap-2 items-center">
+								<Link
+									href={appURL(`/pod/${pod.id}`)}
+									className="cursor-pointer flex gap-2 items-center"
+								>
 									<div className="text-white">{underlying.name}</div>
 									<div>
 										<PaperIcon />
 									</div>
 								</Link>
 							</div>
-							<ExternalLink link={explorerURL(`/token/${pod.underlying.id}`)} className="hover:text-white hover:opacity-70 transition-all">
+							<ExternalLink
+								link={explorerURL(`/token/${pod.underlying.id}`)}
+								className="hover:text-white hover:opacity-70 transition-all"
+							>
 								<div className="uppercase text-[14px]">Underlying asset</div>
 							</ExternalLink>
 						</div>
@@ -59,21 +70,43 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 						<div className="text-center flex items-center justify-center">
 							<div className="h-[1px] border-t border-dotted border-neutral-border w-full absolute top-[40%] z-0"></div>
 							<div className="relative z-30">
-								{pod.id.toLowerCase() === "0xca4aed99a2c62cab5b4b6269c02fdb25dc4bd987" ? <FungiEgg /> : pod.id.toLowerCase() === "0xfb8e5ff79e839b7351f85ee32c772885a7c1872e" ? <WarpieLp /> : <Egg />}
+								{pod.id.toLowerCase() ===
+								"0xca4aed99a2c62cab5b4b6269c02fdb25dc4bd987" ? (
+									<FungiEgg />
+								) : pod.id.toLowerCase() ===
+								  "0xfb8e5ff79e839b7351f85ee32c772885a7c1872e" ? (
+									<WarpieLp />
+								) : pod.id.toLowerCase() ===
+								  "0x29382976cad99304347661303bb5e7852d851a38" ? (
+									<ChokeEgg />
+								) : (
+									<Egg />
+								)}
 							</div>
 						</div>
 					</Link>
 					<div className="min-h-[191px] md:min-h-[80px] flex flex-col justify-end pb-4">
 						<div className="flex gap-1 text-gray items-center">
 							<Link href={appURL(`/pod/${pod.id}`)}>
-								<div className="text-white">{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].name : pod.name}</div>
+								<div className="text-white">
+									{OVERRIDE_POD_DATA[pod.id]
+										? OVERRIDE_POD_DATA[pod.id].name
+										: pod.name}
+								</div>
 							</Link>
 							<div>(${pod.symbol})</div>
-							<ExternalLink link={explorerURL(`/address/${pod.id}`)} className="hover:text-white">
+							<ExternalLink
+								link={explorerURL(`/address/${pod.id}`)}
+								className="hover:text-white"
+							>
 								<PaperIcon />
 							</ExternalLink>
 						</div>
-						<div className="mt-2 text-gray">{OVERRIDE_POD_DATA[pod.id] ? OVERRIDE_POD_DATA[pod.id].description : pod.description}</div>
+						<div className="mt-2 text-gray">
+							{OVERRIDE_POD_DATA[pod.id]
+								? OVERRIDE_POD_DATA[pod.id].description
+								: pod.description}
+						</div>
 						<div className="flex gap-2 flex-wrap mt-4">
 							<div className="md:float-left">
 								<Tooltip
@@ -82,7 +115,9 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 											{isPermissionless(pod.owner.id) ? (
 												<div>{podOwner}</div>
 											) : (
-												<ExternalLink link={explorerURL(`/address/${pod.owner.id}`)}>
+												<ExternalLink
+													link={explorerURL(`/address/${pod.owner.id}`)}
+												>
 													<div className="min-w-[180px] text-center justify-center flex gap-1">
 														<span>Owner: {podOwner}</span>
 														<span className="w-[18px]">
@@ -95,12 +130,20 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 									}
 									direction="top"
 								>
-									<div className="text-white inline-block p-2 rounded-full border border-neutral-border bg-neutral-black-secondary">{isPermissionless(pod.owner.id) ? <OpenLockIcon /> : <ClosedLockIcon />}</div>
+									<div className="text-white inline-block p-2 rounded-full border border-neutral-border bg-neutral-black-secondary">
+										{isPermissionless(pod.owner.id) ? (
+											<OpenLockIcon />
+										) : (
+											<ClosedLockIcon />
+										)}
+									</div>
 								</Tooltip>
 							</div>
 							{genesis ? (
 								<div className="md:float-left block">
-									<div className="uppercase text-yellow border border-yellow bg-[#FFD52E1A] rounded-[32px] py-1 px-2">Genesis pod</div>
+									<div className="uppercase text-yellow border border-yellow bg-[#FFD52E1A] rounded-[32px] py-1 px-2">
+										Genesis pod
+									</div>
 								</div>
 							) : (
 								<></>
@@ -116,7 +159,13 @@ const PodCard = ({ pod, genesis = false, underlying }: IPodCard) => {
 								<div className="text-white uppercase">rewards:</div>
 								<div className="flex items-center">
 									{pod.rewards.map((_reward, i) => {
-										return <PodCardReward key={_reward.id} reward={_reward} index={i} />;
+										return (
+											<PodCardReward
+												key={_reward.id}
+												reward={_reward}
+												index={i}
+											/>
+										);
 									})}
 								</div>
 							</>
