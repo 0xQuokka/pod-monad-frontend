@@ -6,7 +6,6 @@ import { useAccount } from "wagmi";
 import CreateSeedModal from "../modals/createSeed";
 
 const CreateSeedButton = () => {
-	const { address: account } = useAccount();
 	const { setModal } = useContext(ModalContext);
 
 	const openCreateSeedModal = () => {
@@ -14,13 +13,7 @@ const CreateSeedButton = () => {
 	};
 
 	return (
-		<>
-			{
-				<Button disabled={!account} onClick={() => openCreateSeedModal()}>
-					Create a seed
-				</Button>
-			}
-		</>
+		<>{<Button onClick={() => openCreateSeedModal()}>Create a seed</Button>}</>
 	);
 };
 

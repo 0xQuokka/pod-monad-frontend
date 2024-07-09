@@ -6,7 +6,6 @@ import { ModalContext } from "@/services/ModalProvider";
 import { useAccount } from "wagmi";
 
 const CreatePodButton = () => {
-	const { address: account } = useAccount();
 	const { setModal } = useContext(ModalContext);
 
 	const openCreatePodModal = () => {
@@ -14,13 +13,7 @@ const CreatePodButton = () => {
 	};
 
 	return (
-		<>
-			{
-				<Button disabled={!account} onClick={() => openCreatePodModal()}>
-					Create a pod
-				</Button>
-			}
-		</>
+		<>{<Button onClick={() => openCreatePodModal()}>Create a pod</Button>}</>
 	);
 };
 

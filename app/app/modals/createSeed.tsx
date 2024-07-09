@@ -152,7 +152,10 @@ const Step2Modal = ({
 			abi: ERC20_ABI,
 			address: POD_TOKEN_ADDRESS[DEFAULT_CHAIN_ID],
 			functionName: "approve",
-			args: [LAUNCHPOD_FACTORY_ADDRESS[DEFAULT_CHAIN_ID], fee],
+			args: [
+				LAUNCHPOD_FACTORY_ADDRESS[DEFAULT_CHAIN_ID],
+				ethers.parseEther("1500"),
+			],
 		});
 	};
 
@@ -245,9 +248,7 @@ const Step2Modal = ({
 				</Card>
 				<div className="text-center">
 					<span className="text-[#737E80]">Creation cost:</span>{" "}
-					<span className="text-white">
-						{fee ? ethers.formatEther(fee.toString()) : "-"}
-					</span>{" "}
+					<span className="text-white">1500</span>{" "}
 					<span className="text-white">POD</span>
 				</div>
 			</main>
