@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Button from "./components/button";
 import LinkButton from "./components/linkButton";
+import MonadLogo from "./components/token/monadLogo";
+import Staking from "./components/Staking";
 
 export default function Home() {
 	return (
@@ -12,16 +14,13 @@ export default function Home() {
 			<main className="relative z-10 py-[80px] w-[864px] mx-auto md:w-full md:p-5">
 				<header className="flex items-center justify-between">
 					<div className="text-[50px] -tracking-[3px] text-white font-[500]">pod.</div>
-					<div>
-						<LinkButton link="https://app.pod.finance" white>
-							Launch app
-						</LinkButton>
-					</div>
 				</header>
 				<section className="grid grid-cols-2 md:flex md:flex-col md:gap-2">
 					<div className="flex flex-col gap-4 justify-center max-w-[355px] md:max-w-full md:my-10">
-						<header className="uppercase text-[#737E80] flex gap-2">
-							<div>Base based protocol</div>
+						<header className="text-violet flex gap-2">
+							<div className="flex items-center gap-1">
+								<MonadLogo /> MONAD based protocol
+							</div>
 						</header>
 						<div>
 							<div className="flex flex-col gap-6">
@@ -32,13 +31,15 @@ export default function Home() {
 							</div>
 							<div className="gap-2 flex items-center mt-10">
 								<LinkButton link="https://pod-finance.gitbook.io/welcome-to-pod-finance">GITBOOK</LinkButton>
-								<LinkButton link="https://app.uniswap.org/explore/tokens/base/0xbef5d404548fab05820e64f92cf043b6a06f9c72"> GET $POD</LinkButton>
 							</div>
 						</div>
 					</div>
 					<div className="flex items-center justify-center">
 						<Image src={"/podcard.jpg"} alt="Pod Card" width={848} height={1076} quality={100} className="w-full" />
 					</div>
+				</section>
+				<section>
+					<Staking />
 				</section>
 				<section className="grid grid-cols-2 mt-40 md:mt-20 md:flex md:flex-col md:gap-3">
 					<div className="flex flex-col gap-1">
@@ -131,9 +132,12 @@ export default function Home() {
 			</main>
 			<footer>
 				<div className="w-[150px] mx-auto flex items-center gap-4 mt-40 md:mt-20 mb-10 justify-center text-[12px]">
-					<div className="text-right">
+					<div className="text-right border-r border-dashed border-gray pr-4">
 						<div className="text-white">1. POD</div>
-						<div className="text-right text-[#737E80]">DEFI PROTOCOL BUILT ON BASE</div>
+						<div className="text-right text-[#737E80]">DEFI PROTOCOL BUILT ON MONAD</div>
+					</div>
+					<div>
+						<MonadLogo />
 					</div>
 				</div>
 			</footer>

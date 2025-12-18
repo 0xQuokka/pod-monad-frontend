@@ -15,6 +15,7 @@ const config: Config = {
 				yellow: "#FFD52E",
 				green: "#43B055",
 				red: "#D94A4A",
+				violet: "#6E54FF",
 			},
 			screens: {
 				md: {
