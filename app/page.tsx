@@ -29,9 +29,6 @@ export default function Home() {
 									POD is a fully permissionless protocol that maximize your assets&apos; value. Create a Pod or stake any token including ERC-20 tokens or LP tokens and boost your earnings with enhanced multi-rewards.
 								</p>
 							</div>
-							<div className="gap-2 flex items-center mt-10">
-								<LinkButton link="https://pod-finance.gitbook.io/welcome-to-pod-finance">GITBOOK</LinkButton>
-							</div>
 						</div>
 					</div>
 					<div className="flex items-center justify-center">
@@ -88,44 +85,6 @@ export default function Home() {
 								</defs>
 							</svg>
 							<div className="uppercase transition-all">TWITTER / X</div>
-						</a>
-						<a href="https://t.me/podfinance" target="_blank" rel="noreferrer" className="flex gap-4 items-center w-[200px] text-[#737E80] hover:text-white">
-							<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<g clipPath="url(#clip0_88_3845)">
-									<circle cx="20" cy="20" r="19.5" fill="#101212" stroke="currentColor" />
-									<line x1="19.5" y1="67" x2="19.5" y2="20" stroke="currentColor" />
-									<line x1="19.5" y1="58" x2="19.5" y2="11" stroke="currentColor" />
-									<line x1="-3.5" y1="11" x2="43.5" y2="11" stroke="currentColor" />
-								</g>
-								<defs>
-									<clipPath id="clip0_88_3845">
-										<rect width="40" height="40" rx="20" fill="white" />
-									</clipPath>
-								</defs>
-							</svg>
-
-							<div className=" uppercase transition-all hover:text-white">COMMUNITY</div>
-						</a>
-						<a href="https://pod-finance.gitbook.io/welcome-to-pod-finance" target="_blank" rel="noreferrer" className="flex gap-4 items-center w-[200px] text-[#737E80] hover:text-white">
-							<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<g clipPath="url(#clip0_88_3852)">
-									<circle cx="20" cy="20" r="19.5" fill="#101212" stroke="currentColor" />
-									<line x1="19.5" y1="67" x2="19.5" y2="-3.61403e-06" stroke="currentColor" />
-									<line x1="16.5" y1="67" x2="16.5" y2="-3.61403e-06" stroke="currentColor" />
-									<line x1="13.5" y1="67" x2="13.5" y2="-3.61403e-06" stroke="currentColor" />
-									<line x1="10.5" y1="67" x2="10.5" y2="-3.61403e-06" stroke="currentColor" />
-									<line x1="7.5" y1="67" x2="7.5" y2="-3.61403e-06" stroke="currentColor" />
-									<line x1="4.5" y1="67" x2="4.5" y2="-3.61403e-06" stroke="currentColor" />
-									<line x1="1.5" y1="67" x2="1.5" y2="-3.61403e-06" stroke="currentColor" />
-								</g>
-								<defs>
-									<clipPath id="clip0_88_3852">
-										<rect width="40" height="40" rx="20" fill="white" />
-									</clipPath>
-								</defs>
-							</svg>
-
-							<div className="uppercase">DOCUMENTATION</div>
 						</a>
 					</div>
 				</section>
