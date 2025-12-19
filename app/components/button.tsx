@@ -31,7 +31,7 @@ const Button = ({ onClick, children, className, style, onMouseEnterValue, onMous
 	return (
 		<div
 			onClick={onClick}
-			className={`p-4 border border-[#323637] sm:text-sm bg-white transition-all hover:opacity-80 text-[#17191A] uppercase ${disabled ? "opacity-50 cursor-no-drop pointer-events-none" : "cursor-pointer"} ${className}`}
+			className={`p-4 border border-[#323637] sm:text-sm bg-violet text-white transition-all hover:opacity-80 ${disabled ? "opacity-50 cursor-no-drop pointer-events-none" : "cursor-pointer"} ${className}`}
 			style={{ ...style }}
 			onMouseEnter={onMouseOver}
 			onMouseLeave={onMouseOut}

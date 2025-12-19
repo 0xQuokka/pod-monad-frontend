@@ -10,9 +10,10 @@ interface IGenericInput {
 	setAmount: Dispatch<SetStateAction<number>>;
 	label: string;
 	balance: number;
+	disabled?: boolean;
 }
 
-const GenericInput = ({ token, amount, setAmount, label, balance }: IGenericInput) => {
+const GenericInput = ({ token, amount, setAmount, label, balance, disabled }: IGenericInput) => {
 	const [inputFocused, setInputFocused] = useState<boolean>(false);
 
 	const [insufficientBalance, setInsufficientBalance] = useState<boolean>(amount > balance);
@@ -28,7 +29,7 @@ const GenericInput = ({ token, amount, setAmount, label, balance }: IGenericInpu
 	}, [amount, balance]);
 
 	return (
-		<div className={`${insufficientBalance ? "border-[#FC5555]" : inputFocused ? "border-white" : "border-neutral-border"} p-4 flex flex-col gap-4 bg-neutral-black border transition-all`}>
+		<div className={`${insufficientBalance ? "border-[#FC5555]" : inputFocused ? "border-violet" : "border-neutral-border"} p-4 flex flex-col gap-4 bg-neutral-black border transition-all rounded-[4px] ${disabled ? "opacity-50 cursor-no-drop pointer-events-none" : "cursor-pointer"}`}>
 			<div className="flex justify-between items-center">
 				<div className="flex-1">
 					<input
